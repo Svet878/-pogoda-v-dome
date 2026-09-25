@@ -1685,12 +1685,6 @@
         white-space: nowrap;
       }
 
-      /*
-        Мобильная навигация.
-        Она становится отдельной горизонтальной полосой
-        под логотипом и телефоном.
-      */
-
       .topbar {
         flex-wrap: wrap;
         padding-bottom: 6px;
@@ -2423,6 +2417,732 @@
         right: -100px;
       }
     }
+
+
+    /* =========================================================
+       =========================================================
+          НОВАЯ АНИМАЦИЯ БЛОКОВ 2–4
+          ПЕРВЫЙ БЛОК НЕ ТРОГАЕМ
+       =========================================================
+       ========================================================= */
+
+    /* ---------------------------------------------------------
+       БЛОК 2 — НАША ПОМОЩЬ
+       --------------------------------------------------------- */
+
+    .services .services-head h2,
+    .services .services-head p,
+    .services .glass-kb,
+    .services .glass-kb .k {
+      opacity: 0;
+      filter: blur(6px);
+    }
+
+    .services .services-head h2 {
+      transform: translateY(35px) scale(0.96);
+    }
+
+    .services .services-head p {
+      transform: translateY(25px);
+    }
+
+    /*
+      Панель не получает transform здесь,
+      потому что на мобильном у неё уже есть
+      transform: none !important.
+      Поэтому для панели используем красивое
+      появление через opacity + blur.
+    */
+    .services .glass-kb {
+      filter: blur(8px);
+    }
+
+    .services .glass-kb .k {
+      transform: translateY(25px) scale(0.90);
+    }
+
+    .services.is-visible .services-head h2 {
+      animation:
+        block2Title
+        0.75s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.05s
+        forwards;
+    }
+
+    .services.is-visible .services-head p {
+      animation:
+        block2Text
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.2s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb {
+      animation:
+        block2Panel
+        0.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.35s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(1) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.45s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(2) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.55s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(3) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.65s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(4) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.75s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(5) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.85s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(6) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.95s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(7) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        1.05s
+        forwards;
+    }
+
+    .services.is-visible .glass-kb .k:nth-child(8) {
+      animation:
+        serviceCardIn
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        1.15s
+        forwards;
+    }
+
+
+    /* ---------------------------------------------------------
+       БЛОК 3 — КОГДА МОЖНО ОБРАТИТЬСЯ
+       --------------------------------------------------------- */
+
+    .when .when-wrap {
+      opacity: 0;
+      transform: translateY(35px);
+      filter: blur(7px);
+    }
+
+    .when .when-wrap h2 {
+      opacity: 0;
+      transform: translateY(30px) scale(0.96);
+    }
+
+    .when .when-intro {
+      opacity: 0;
+      transform: translateY(25px);
+      filter: blur(5px);
+    }
+
+    .when .when-cards {
+      opacity: 0;
+      transform: translateY(25px);
+      filter: blur(5px);
+    }
+
+    .when .when-card {
+      opacity: 0;
+      transform: translateY(45px) scale(0.94);
+      filter: blur(6px);
+    }
+
+    .when.is-visible .when-wrap {
+      animation:
+        whenWrapIn
+        0.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .when.is-visible .when-wrap h2 {
+      animation:
+        whenTitleIn
+        0.75s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.05s
+        forwards;
+    }
+
+    .when.is-visible .when-intro {
+      animation:
+        whenIntroIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.25s
+        forwards;
+    }
+
+    .when.is-visible .when-cards {
+      animation:
+        whenCardsWrapIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.4s
+        forwards;
+    }
+
+    .when.is-visible .when-card:nth-child(1) {
+      animation:
+        whenCardIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.55s
+        forwards;
+    }
+
+    .when.is-visible .when-card:nth-child(2) {
+      animation:
+        whenCardIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.75s
+        forwards;
+    }
+
+    .when.is-visible .when-card:nth-child(3) {
+      animation:
+        whenCardIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.95s
+        forwards;
+    }
+
+    .when.is-visible .when-card li {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    .when.is-visible .when-card:nth-child(1) li,
+    .when.is-visible .when-card:nth-child(2) li,
+    .when.is-visible .when-card:nth-child(3) li {
+      animation:
+        whenListIn
+        0.45s
+        ease
+        forwards;
+    }
+
+    .when.is-visible .when-card:nth-child(1) li:nth-child(1),
+    .when.is-visible .when-card:nth-child(2) li:nth-child(1),
+    .when.is-visible .when-card:nth-child(3) li:nth-child(1) {
+      animation-delay: 1.05s;
+    }
+
+    .when.is-visible .when-card:nth-child(1) li:nth-child(2),
+    .when.is-visible .when-card:nth-child(2) li:nth-child(2),
+    .when.is-visible .when-card:nth-child(3) li:nth-child(2) {
+      animation-delay: 1.15s;
+    }
+
+    .when.is-visible .when-card:nth-child(1) li:nth-child(3),
+    .when.is-visible .when-card:nth-child(2) li:nth-child(3),
+    .when.is-visible .when-card:nth-child(3) li:nth-child(3) {
+      animation-delay: 1.25s;
+    }
+
+    .when.is-visible .when-card:nth-child(1) li:nth-child(4),
+    .when.is-visible .when-card:nth-child(2) li:nth-child(4),
+    .when.is-visible .when-card:nth-child(3) li:nth-child(4) {
+      animation-delay: 1.35s;
+    }
+
+    .when.is-visible .when-card:nth-child(1) li:nth-child(5) {
+      animation-delay: 1.45s;
+    }
+
+
+    /* ---------------------------------------------------------
+       БЛОК 4 — ЗАПИСАТЬСЯ
+       --------------------------------------------------------- */
+
+    .signup .signup-wrap > h2,
+    .signup .signup-sub,
+    .signup .signup-form,
+    .signup .signup-years,
+    .signup .signup-badge {
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      filter: blur(6px);
+    }
+
+    .signup.is-visible .signup-wrap > h2 {
+      animation:
+        signupTitleIn
+        0.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.05s
+        forwards;
+    }
+
+    .signup.is-visible .signup-sub {
+      animation:
+        signupSubIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.25s
+        forwards;
+    }
+
+    .signup.is-visible .signup-form {
+      animation:
+        signupFormIn
+        0.85s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.4s
+        forwards;
+    }
+
+    .signup.is-visible .signup-years {
+      animation:
+        signupYearsIn
+        0.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.55s
+        forwards;
+    }
+
+    .signup.is-visible .signup-badge:nth-child(1) {
+      animation:
+        signupBadgeIn
+        0.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.7s
+        forwards;
+    }
+
+    .signup.is-visible .signup-badge:nth-child(2) {
+      animation:
+        signupBadgeIn
+        0.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.82s
+        forwards;
+    }
+
+    .signup.is-visible .signup-badge:nth-child(3) {
+      animation:
+        signupBadgeIn
+        0.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.94s
+        forwards;
+    }
+
+
+    /* =========================================================
+       KEYFRAMES — БЛОК 2
+       ========================================================= */
+
+    @keyframes block2Title {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.94);
+        filter: blur(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes block2Text {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes block2Panel {
+      from {
+        opacity: 0;
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes serviceCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.9);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+
+    /* =========================================================
+       KEYFRAMES — БЛОК 3
+       ========================================================= */
+
+    @keyframes whenWrapIn {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+        filter: blur(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes whenTitleIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes whenIntroIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes whenCardsWrapIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes whenCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(45px) scale(0.94);
+        filter: blur(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes whenListIn {
+      from {
+        opacity: 0;
+        transform: translateX(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+
+    /* =========================================================
+       KEYFRAMES — БЛОК 4
+       ========================================================= */
+
+    @keyframes signupTitleIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.94);
+        filter: blur(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes signupSubIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes signupFormIn {
+      from {
+        opacity: 0;
+        transform: translateY(45px) scale(0.95);
+        filter: blur(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes signupYearsIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes signupBadgeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.94);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+
+    /* =========================================================
+       МОБИЛЬНАЯ АНИМАЦИЯ 2–4
+       ========================================================= */
+
+    @media (max-width: 768px) {
+
+      .services.is-visible .services-head h2 {
+        animation-duration: 0.7s;
+      }
+
+      .services.is-visible .services-head p {
+        animation-duration: 0.65s;
+      }
+
+      .services.is-visible .glass-kb {
+        animation-duration: 0.7s;
+      }
+
+      .services.is-visible .glass-kb .k {
+        animation-duration: 0.5s;
+      }
+
+      .when.is-visible .when-wrap {
+        animation-duration: 0.7s;
+      }
+
+      .when.is-visible .when-card {
+        animation-duration: 0.65s;
+      }
+
+      .signup.is-visible .signup-form {
+        animation-duration: 0.75s;
+      }
+
+      /*
+        На мобильном карточки появляются немного быстрее,
+        чтобы вся последовательность была полностью видна
+        и не растягивалась слишком надолго.
+      */
+
+      .services.is-visible .glass-kb .k:nth-child(1) {
+        animation-delay: 0.45s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(2) {
+        animation-delay: 0.53s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(3) {
+        animation-delay: 0.61s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(4) {
+        animation-delay: 0.69s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(5) {
+        animation-delay: 0.77s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(6) {
+        animation-delay: 0.85s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(7) {
+        animation-delay: 0.93s;
+      }
+
+      .services.is-visible .glass-kb .k:nth-child(8) {
+        animation-delay: 1.01s;
+      }
+
+      .when.is-visible .when-card:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+
+      .when.is-visible .when-card:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+
+      .when.is-visible .when-card:nth-child(3) {
+        animation-delay: 0.9s;
+      }
+
+      .when.is-visible .when-card li {
+        animation-delay: 0.1s;
+      }
+
+      .signup.is-visible .signup-wrap > h2 {
+        animation-delay: 0.05s;
+      }
+
+      .signup.is-visible .signup-sub {
+        animation-delay: 0.22s;
+      }
+
+      .signup.is-visible .signup-form {
+        animation-delay: 0.38s;
+      }
+
+      .signup.is-visible .signup-years {
+        animation-delay: 0.52s;
+      }
+
+      .signup.is-visible .signup-badge:nth-child(1) {
+        animation-delay: 0.65s;
+      }
+
+      .signup.is-visible .signup-badge:nth-child(2) {
+        animation-delay: 0.76s;
+      }
+
+      .signup.is-visible .signup-badge:nth-child(3) {
+        animation-delay: 0.87s;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION ДЛЯ НОВОЙ АНИМАЦИИ
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .services .services-head h2,
+      .services .services-head p,
+      .services .glass-kb,
+      .services .glass-kb .k,
+      .when .when-wrap,
+      .when .when-wrap h2,
+      .when .when-intro,
+      .when .when-cards,
+      .when .when-card,
+      .when .when-card li,
+      .signup .signup-wrap > h2,
+      .signup .signup-sub,
+      .signup .signup-form,
+      .signup .signup-years,
+      .signup .signup-badge {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        animation: none !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -3432,6 +4152,51 @@
     </div>
 
   </footer>
+
+
+  <!-- =====================================================
+       SCROLL АНИМАЦИЯ БЛОКОВ 2–4
+       ===================================================== -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const animatedSections = document.querySelectorAll(
+        '.services, .when, .signup'
+      );
+
+      if (!animatedSections.length) {
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+          entries.forEach(function (entry) {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add('is-visible');
+
+            observer.unobserve(entry.target);
+
+          });
+
+        },
+        {
+          threshold: 0.15,
+          rootMargin: '0px 0px -8% 0px'
+        }
+      );
+
+      animatedSections.forEach(function (section) {
+        observer.observe(section);
+      });
+
+    });
+  </script>
 
 </body>
 </html>
