@@ -1,1048 +1,3437 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Погода в доме</title>
-    <meta
-      name="description"
-      content="Психологический центр «Погода в доме» — современная поддержка, гармония и забота о вашем внутреннем состоянии."
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              sand: '#f2e7dc',
-              mist: '#dfe7e4',
-              stonewarm: '#8d7f73',
-              ink: '#171716',
-              clay: '#b89e8b',
-              taupe: '#9a8a80'
-            },
-            boxShadow: {
-              soft: '0 30px 80px rgba(12, 12, 10, 0.28)'
-            }
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Погода в доме</title>
+
+  <meta
+    name="description"
+    content="Психологический центр «Погода в доме» — современная поддержка, гармония и забота о вашем внутреннем состоянии."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#f2e7dc',
+            mist: '#dfe7e4',
+            stonewarm: '#8d7f73',
+            ink: '#171716',
+            clay: '#b89e8b',
+            taupe: '#9a8a80'
+          },
+
+          boxShadow: {
+            soft: '0 30px 80px rgba(12, 12, 10, 0.28)'
           }
         }
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --bg-dark: #120f0e;
-        --bg-soft: rgba(255, 255, 255, 0.14);
-        --gold: rgba(227, 195, 151, 0.65);
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg-dark: #120f0e;
+      --bg-soft: rgba(255, 255, 255, 0.14);
+      --gold: rgba(227, 195, 151, 0.65);
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #f8f3ee;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    p,
+    span,
+    li,
+    a,
+    button,
+    input,
+    textarea,
+    label {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .hero-section {
+      width: 100vw !important;
+      margin: 0 !important;
+      max-width: none;
+      padding: 0;
+      border-radius: 0;
+      background: #f5efe9;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 24px 0;
+      box-sizing: border-box;
+    }
+
+    .brand-display {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      line-height: 0.9;
+      color: #f48fb8;
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+    }
+
+    .brand-name {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.05rem, 1.6vw, 1.9rem);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: #f48fb8;
+      text-transform: none;
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 6px rgba(150, 60, 110, 0.22);
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #3a3a4a;
+    }
+
+    .glass-phone {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #3a3a4a;
+    }
+
+    .brand-line {
+      display: block;
+      width: min(100%, 11ch);
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: none;
+      transform: scale(1.06);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-glow {
+      background:
+        radial-gradient(
+          circle at 30% 20%,
+          rgba(255, 255, 255, 0.12),
+          transparent 22%
+        ),
+        radial-gradient(
+          circle at 80% 35%,
+          rgba(214, 224, 229, 0.14),
+          transparent 26%
+        ),
+        radial-gradient(
+          circle at 50% 75%,
+          rgba(255, 255, 255, 0.08),
+          transparent 28%
+        );
+
+      filter: blur(18px);
+    }
+
+    .floating-orb {
+      animation: float 14s ease-in-out infinite alternate;
+    }
+
+    .floating-orb.delay {
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
       }
 
-      html, body {
-        margin: 0;
-        padding: 0;
+      100% {
+        transform: translate3d(18px, -16px, 0) scale(1.08);
+      }
+    }
+
+    .logo-compass {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .logo-compass::before,
+    .logo-compass::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 9999px;
+    }
+
+    .logo-compass::after {
+      inset: 24px 18px 18px 24px;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .logo-compass svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mini-bullet {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+      flex-shrink: 0;
+    }
+
+    section,
+    footer {
+      scroll-snap-align: start;
+    }
+
+    .hero,
+    .hero-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services {
+      position: relative;
+      z-index: 3;
+    }
+
+    .when {
+      position: relative;
+      z-index: 4;
+    }
+
+    .signup {
+      position: relative;
+      z-index: 5;
+    }
+
+    .footer {
+      position: relative;
+      z-index: 6;
+    }
+
+    .video-bg,
+    .about-bg,
+    .services-video,
+    .when-video,
+    .signup-video {
+      z-index: 0;
+    }
+
+    .video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .about-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .when-video,
+    .signup-video {
+      z-index: 0;
+    }
+
+    .services-video {
+      z-index: 0;
+      position: relative;
+    }
+
+    .veil-top,
+    .veil-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 140px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .veil-top {
+      top: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 246, 249, 0.9),
+        rgba(250, 246, 249, 0)
+      );
+    }
+
+    .veil-bottom {
+      bottom: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 246, 249, 0),
+        rgba(250, 246, 249, 0.9)
+      );
+    }
+
+    #hero,
+    #about,
+    #services,
+    #when,
+    #signup,
+    #footer {
+      scroll-margin-top: 70px;
+    }
+
+    /* =====================================================
+       TOPBAR
+       ===================================================== */
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 28px;
+      gap: 28px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-center {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar a {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #3a4456;
+      text-decoration: none;
+    }
+
+    .topbar a:hover {
+      color: #ec6fa0;
+    }
+
+    .topbar .topbar-phone {
+      color: #ec6fa0;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .topbar-logo {
+      width: 46px;
+      height: 46px;
+      filter: drop-shadow(
+        0 2px 3px rgba(214, 116, 157, 0.35)
+      );
+    }
+
+    .hero-inner,
+    .about-wrap,
+    .services-head,
+    .services-badge,
+    .when-wrap,
+    .signup-wrap,
+    .footer-wrap {
+      position: relative;
+      z-index: 4;
+    }
+
+    .hero-section .hero-inner p.mb-5 {
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 8px 20px;
+      display: inline-block;
+      color: #2e3a4d;
+      font-weight: 700;
+    }
+
+    .hero-section .hero-inner .max-w-2xl {
+      color: #2e3a4d;
+      font-weight: 600;
+      font-size: 19px;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85);
+    }
+
+    /* 3D-КНОПКА */
+
+    footer button {
+      box-shadow:
+        0 5px 0 #e0559a,
+        0 10px 20px rgba(224, 85, 154, 0.35) !important;
+
+      transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+    }
+
+    footer button:hover {
+      transform: translateY(2px);
+
+      box-shadow:
+        0 3px 0 #e0559a,
+        0 6px 14px rgba(224, 85, 154, 0.3) !important;
+    }
+
+    footer button:active {
+      transform: translateY(4px);
+
+      box-shadow:
+        0 1px 0 #e0559a !important;
+    }
+
+    /* =====================================================
+       ABOUT
+       ===================================================== */
+
+    .about {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      padding: 110px 24px 150px;
+      background: none;
+    }
+
+    .about-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.4);
+      z-index: 0;
+    }
+
+    .about-wrap {
+      position: relative;
+      z-index: 4;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .about h2 {
+      margin: 0 0 58px;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #f48fb8;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+
+      opacity: 0;
+      transform: scale(0.9) translateY(30px);
+      animation: titleIn 0.8s ease-out both;
+    }
+
+    .about-cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      position: relative;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.45),
+          rgba(255, 255, 255, 0.2)
+        );
+
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: none;
+
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+      transition:
+        transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+        background 0.45s ease;
+
+      opacity: 0;
+      transform: scale(0.82) translateY(40px);
+      filter: blur(8px);
+      animation: cardIn 0.8s ease-out both;
+    }
+
+    .about-card:nth-child(1) {
+      animation-delay: 0.15s;
+    }
+
+    .about-card:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .about-card:nth-child(3) {
+      animation-delay: 0.45s;
+    }
+
+    .about-card:hover {
+      transform: scale(1.05) translateY(-6px);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.6),
+          rgba(255, 255, 255, 0.4)
+        );
+    }
+
+    .about-card h3 {
+      margin: 0 0 18px;
+      padding: 13px 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.28)
+        );
+
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-align: center;
+
+      color: #f48fb8;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+
+      transition: transform 0.45s ease;
+    }
+
+    .about-card:hover h3 {
+      transform: scale(1.04);
+    }
+
+    .about-card p,
+    .about-card li {
+      font-family: 'Manrope', sans-serif;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #4a4a5a;
+      text-shadow: none;
+    }
+
+    .about-card p {
+      margin: 0;
+    }
+
+    .about-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .about-card li {
+      position: relative;
+      margin: 10px 0;
+      padding-left: 28px;
+      opacity: 0;
+      animation: listDotReveal 0.4s ease forwards;
+      animation-delay: 0.65s;
+    }
+
+    .about-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f4a6c0;
+    }
+
+    @keyframes titleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: scale(0.82) translateY(40px);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes listDotReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Контраст первого блока */
+
+    .video-bg {
+      filter: saturate(1.3) contrast(1.1) !important;
+    }
+
+    .hero-overlay {
+      background: rgba(255, 255, 255, 0.12) !important;
+      opacity: 0.4 !important;
+    }
+
+    .veil-top,
+    .veil-bottom {
+      opacity: 0.5 !important;
+    }
+
+    #hero p {
+      color: #22303f !important;
+      font-weight: 600 !important;
+    }
+
+    #hero a {
+      color: #2e3a4d !important;
+      font-weight: 700 !important;
+    }
+
+    /* =====================================================
+       SERVICES
+       ===================================================== */
+
+    .services {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .services-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      animation: servicesSway 10s ease-in-out infinite;
+      transform-origin: 50% 60%;
+    }
+
+    .services-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+
+      padding: 14px 30px;
+
+      background: rgba(255, 255, 255, 0.5);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+
+      color: #f48fb8;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b;
+    }
+
+    .services-head {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .services-head h2 {
+      margin: 0;
+
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+
+      color: #f48fb8;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+    }
+
+    .services-head p {
+      margin: 8px 0 0;
+      font-family: 'Manrope', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #3f4a5a;
+    }
+
+    @keyframes servicesSway {
+      0% {
+        transform: scale(1.03) rotate(0deg) translateY(0);
+      }
+
+      50% {
+        transform: scale(1.04) rotate(0.3deg) translateY(-5px);
+      }
+
+      100% {
+        transform: scale(1.03) rotate(0deg) translateY(0);
+      }
+    }
+
+    .glass-kb {
+      position: absolute;
+      right: 4%;
+      top: 45%;
+      transform: translateY(-50%);
+      z-index: 4;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      padding: 20px;
+
+      background: rgba(255, 255, 255, 0.35);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 26px;
+    }
+
+    .kb-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .kb-row:nth-child(2) {
+      padding-left: 30px;
+    }
+
+    .k {
+      width: 170px;
+      min-height: 92px;
+      border-radius: 16px;
+      padding: 12px;
+
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.35;
+
+      color: #3a4456;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 255, 255, 0.4)
+        );
+
+      border: 1px solid rgba(255, 255, 255, 0.9);
+
+      box-shadow:
+        0 6px 14px rgba(120, 140, 170, 0.22),
+        inset 0 2px 4px rgba(255, 255, 255, 0.95),
+        inset 0 -5px 10px rgba(160, 180, 210, 0.28);
+
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .k.g {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(198, 240, 222, 0.95),
+          rgba(140, 215, 185, 0.55)
+        );
+
+      color: #2e5d4b;
+    }
+
+    .k:hover {
+      transform: translateY(3px);
+    }
+
+    @media (max-width: 1200px) {
+      .glass-kb {
+        position: static;
+        transform: none;
+        margin: 40px auto 0;
+        width: max-content;
+        max-width: 94%;
+      }
+
+      .kb-row {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* =====================================================
+       WHEN
+       ===================================================== */
+
+    .when {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: none;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .when::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.22);
+      pointer-events: none;
+    }
+
+    .when-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      transform: scale(1.06);
+      filter: brightness(1.18) saturate(1.05);
+    }
+
+    .when-wrap {
+      position: relative;
+      z-index: 4;
+      max-width: 640px;
+      margin: 0 0 0 5%;
+      padding: 90px 0 20px;
+    }
+
+    .when h2 {
+      margin: 0 0 24px;
+
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+
+      color: #f48fb8;
+
+      font-size: clamp(28px, 3.5vw, 46px);
+      text-transform: uppercase;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      animation: titleIn 0.8s ease-out both;
+    }
+
+    .when-intro {
+      background: rgba(255, 255, 255, 0.55);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+
+      padding: 22px 26px;
+
+      color: #3a4456;
+
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.7;
+
+      text-align: justify;
+      text-shadow: none;
+
+      margin: 0 0 18px 0;
+    }
+
+    .when-cards {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+
+      max-width: 1200px;
+      margin: 28px auto 70px;
+      padding: 0 24px;
+    }
+
+    .when-card {
+      background: rgba(255, 255, 255, 0.55);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
+
+      padding: 26px 28px;
+    }
+
+    .when-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: #f48fb8;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 4px 8px rgba(150, 60, 110, 0.18);
+
+      font-size: 18px;
+      margin: 0 0 14px;
+    }
+
+    .when-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .when-card li {
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      color: #3a4456;
+      font-weight: 500;
+      line-height: 1.55;
+      margin: 0 0 10px;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .when-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f4a6c0;
+    }
+
+    .when-glass li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f4a6c0;
+    }
+
+    /* =====================================================
+       SIGNUP
+       ===================================================== */
+
+    .signup {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .signup-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: brightness(1.12) saturate(1.05);
+    }
+
+    .signup::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.18);
+      pointer-events: none;
+    }
+
+    .signup-wrap {
+      position: relative;
+      z-index: 4;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px 90px;
+      text-align: center;
+    }
+
+    .signup h2 {
+      margin: 0 0 12px;
+
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+
+      color: #f48fb8;
+
+      text-transform: uppercase;
+      font-size: clamp(28px, 3.5vw, 46px);
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 0 #cc6190,
+        0 5px 10px rgba(150, 60, 110, 0.22);
+    }
+
+    .signup-sub {
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #3a4456;
+      margin: 18px 0 28px;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    .signup-sub a {
+      color: #ec6fa0;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .signup-sub,
+    .signup-form label,
+    .signup-form label span,
+    .signup-agree,
+    .signup-agree span,
+    .signup-badge {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .signup-form {
+      background: rgba(255, 255, 255, 0.55);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
+
+      padding: 30px 34px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      text-align: left;
+    }
+
+    .signup-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #3a4456;
+    }
+
+    .signup-form input[type='text'],
+    .signup-form input[type='tel'],
+    .signup-form input[type='email'] {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 12px 16px;
+
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      color: #3a4456;
+
+      outline: none;
+    }
+
+    .signup-agree {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 10px;
+
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .signup-agree input {
+      margin-top: 3px;
+    }
+
+    .signup-form button {
+      align-self: center;
+      margin-top: 8px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f8a5c2,
+          #f48fb8
+        );
+
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+
+      padding: 14px 40px;
+
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 6px 18px rgba(244, 143, 184, 0.4);
+    }
+
+    .signup-years {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: #f48fb8;
+      text-transform: uppercase;
+
+      font-size: clamp(20px, 2.5vw, 30px);
+      margin: 46px 0 22px;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 6px rgba(150, 60, 110, 0.18);
+    }
+
+    .signup-badges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .signup-badge {
+      background: rgba(255, 255, 255, 0.5);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+
+      padding: 20px 18px;
+
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #3a4456;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .signup-badge .tick {
+      flex: 0 0 auto;
+
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #a8e6cf,
+          #7fd1ae
+        );
+
+      color: #fff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: 800;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .footer {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+
+      background:
+        url('footer.jpg')
+        center / cover no-repeat;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(233, 228, 242, 0.55),
+          rgba(248, 225, 235, 0.45)
+        );
+    }
+
+    .footer-wrap {
+      position: relative;
+      z-index: 4;
+
+      max-width: 1200px;
+      margin: 0 auto;
+
+      padding: 70px 24px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+
+      min-height: 700px;
+      align-content: center;
+    }
+
+    .footer-col {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      animation: cardIn 0.8s ease-out both;
+    }
+
+    .footer-wrap .footer-col:nth-child(1) {
+      animation-delay: 0.08s;
+    }
+
+    .footer-wrap .footer-col:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    .footer-wrap .footer-col:nth-child(3) {
+      animation-delay: 0.28s;
+    }
+
+    .footer-col h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: #f48fb8;
+      text-transform: uppercase;
+      font-size: 22px;
+      margin: 0 0 20px;
+
+      text-shadow:
+        0 1px 0 #e57ba6,
+        0 2px 0 #d96e9b,
+        0 3px 6px rgba(150, 60, 110, 0.18);
+    }
+
+    .footer-col p,
+    .footer-col li,
+    .footer-col a,
+    .footer-form {
+      font-family: 'Manrope', sans-serif;
+      color: #3a4456;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 4px 0 14px;
+      padding: 0;
+    }
+
+    .footer-col li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .footer-col li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+      background: #f4a6c0;
+    }
+
+    .f-phone a,
+    .f-mail a {
+      color: #ec6fa0;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .f-area {
+      font-weight: 700;
+      margin: 14px 0 4px;
+    }
+
+    .f-copy {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #6a7280;
+    }
+
+    .f-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .f-links a {
+      color: #ec6fa0;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      background: rgba(255, 255, 255, 0.5);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+
+      padding: 24px;
+    }
+
+    .footer-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .footer-form input[type='email'],
+    .footer-form input[type='text'] {
+      background: rgba(255, 255, 255, 0.85);
+
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+
+      padding: 11px 14px;
+
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      color: #3a4456;
+
+      outline: none;
+    }
+
+    .f-agree {
+      flex-direction: row !important;
+      align-items: flex-start;
+      gap: 10px !important;
+      font-weight: 500 !important;
+      font-size: 13px !important;
+    }
+
+    .footer-form button {
+      align-self: flex-start;
+      margin-top: 6px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f8a5c2,
+          #f48fb8
+        );
+
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+
+      padding: 12px 34px;
+
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 6px 18px rgba(244, 143, 184, 0.4);
+    }
+
+    /* =====================================================
+       REDUCED MOTION
+       ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      .about,
+      .about h2,
+      .about-card,
+      .about-card li,
+      .about-card h3 {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+      }
+
+      .services-video,
+      .when-video,
+      .signup-video {
+        animation: none !important;
+      }
+
+      .footer-col {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+
+    /* =========================================================
+       =========================================================
+          МОБИЛЬНАЯ ВЕРСИЯ
+          DESKTOP ВЫШЕ НЕ МЕНЯЕТСЯ
+       =========================================================
+       ========================================================= */
+
+    @media (max-width: 768px) {
+
+      /* -----------------------------------------------------
+         ОБЩЕЕ
+         ----------------------------------------------------- */
+
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         overflow-x: hidden;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
-        font-family: 'Manrope', sans-serif;
-        background: #f8f3ee;
+        margin: 0;
+        padding: 0;
       }
 
-      /* Ensure all regular text elements use Manrope; headings that explicitly set Nunito remain unchanged */
-      p, span, li, a, button, input, textarea, label {
-        font-family: 'Manrope', sans-serif;
+      section,
+      footer,
+      header,
+      main,
+      div {
+        max-width: 100%;
       }
+
+      img,
+      video,
+      svg {
+        max-width: 100%;
+      }
+
+
+      /* -----------------------------------------------------
+         TOPBAR
+         ----------------------------------------------------- */
+
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+        min-width: 0;
+
+        min-height: 62px;
+
+        padding:
+          7px
+          12px;
+
+        gap: 8px;
+
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        overflow: hidden;
+      }
+
+      .topbar-left {
+        min-width: 0;
+        flex: 1 1 auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 7px;
+      }
+
+      .topbar-logo {
+        width: 38px;
+        height: 38px;
+
+        flex: 0 0 38px;
+      }
+
+      .topbar-left .text-left {
+        min-width: 0;
+      }
+
+      .topbar-left .brand-sub {
+        font-size: 7px;
+        line-height: 1;
+        letter-spacing: 0.09em;
+        white-space: nowrap;
+      }
+
+      .topbar-left .brand-name {
+        font-size: 14px;
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+
+      .topbar-right {
+        flex: 0 0 auto;
+        min-width: 0;
+      }
+
+      .topbar-phone {
+        display: block;
+
+        font-size: 10px !important;
+        line-height: 1.1;
+
+        white-space: nowrap;
+      }
+
+      /*
+        Мобильная навигация.
+        Она становится отдельной горизонтальной полосой
+        под логотипом и телефоном.
+      */
+
+      .topbar {
+        flex-wrap: wrap;
+        padding-bottom: 6px;
+      }
+
+      .topbar-center {
+        order: 3;
+
+        display: flex;
+
+        width: calc(100% + 24px);
+        flex: 0 0 calc(100% + 24px);
+
+        margin-left: -12px;
+
+        gap: 20px;
+
+        justify-content: flex-start;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding:
+          5px
+          12px
+          3px;
+
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+      }
+
+      .topbar-center::-webkit-scrollbar {
+        display: none;
+      }
+
+      .topbar-center a {
+        flex: 0 0 auto;
+
+        font-size: 11px !important;
+        font-weight: 700;
+
+        white-space: nowrap;
+      }
+
+
+      /* -----------------------------------------------------
+         ЯКОРЯ
+         ----------------------------------------------------- */
+
+      #hero,
+      #about,
+      #services,
+      #when,
+      #signup,
+      #footer {
+        scroll-margin-top: 105px;
+      }
+
+
+      /* -----------------------------------------------------
+         HERO
+         ----------------------------------------------------- */
 
       .hero-section {
-        width: 100vw !important;
-        margin: 0 !important;
-        max-width: none;
-        padding: 0;
-        border-radius: 0;
-        background: #f5efe9;
+        width: 100% !important;
+        max-width: 100% !important;
+
+        min-height: 100svh;
+
+        overflow: hidden;
       }
 
       .hero-inner {
         width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 24px 24px 0;
-        box-sizing: border-box;
+        max-width: 100%;
+
+        margin: 0;
+
+        padding:
+          105px
+          16px
+          0;
       }
 
-      .brand-display {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 900;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
-        line-height: 0.9;
-        color: #f48fb8;
-        text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
+      .hero-section .hero-inner > header {
+        display: none;
       }
 
-      .brand-name {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 900;
-        font-size: clamp(1.05rem, 1.6vw, 1.9rem);
-        line-height: 1.1;
-        letter-spacing: 0.02em;
-        color: #f48fb8;
-        text-transform: none;
-        text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 6px rgba(150, 60, 110, 0.22);
-      }
-
-      .brand-sub {
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #3a3a4a;
-      }
-
-      .glass-phone {
-        background: rgba(255, 255, 255, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        border-radius: 999px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        color: #3a3a4a;
-      }
-
-      .brand-line {
-        display: block;
-        width: min(100%, 11ch);
-        margin-inline: auto;
-        text-align: center;
-      }
-
-      .video-bg {
-        position: absolute;
-        inset: 0;
+      .hero-section .hero-inner main {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-            object-position: center 25%;
-            filter: none;
-            transform: scale(1.06);
-          }
+        max-width: 100%;
 
-      .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.25);
+        padding:
+          25px
+          0
+          50px;
       }
 
-      .hero-glow {
-        background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 22%),
-          radial-gradient(circle at 80% 35%, rgba(214, 224, 229, 0.14), transparent 26%),
-          radial-gradient(circle at 50% 75%, rgba(255, 255, 255, 0.08), transparent 28%);
-        filter: blur(18px);
+      .hero-section .hero-inner main > div {
+        width: 100%;
+        max-width: 100%;
       }
+
+      .hero-section .hero-inner p.mb-5 {
+        max-width: 100%;
+
+        font-size: 8px;
+        line-height: 1.4;
+
+        padding:
+          7px
+          11px;
+
+        margin-bottom: 18px;
+      }
+
+      .hero-section .brand-display {
+        width: 100%;
+
+        font-size:
+          clamp(
+            42px,
+            15vw,
+            72px
+          );
+
+        line-height: 0.9;
+      }
+
+      .hero-section .brand-line {
+        width: 100%;
+      }
+
+      .hero-section .hero-inner .max-w-2xl {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+          0
+          4px;
+
+        font-size: 14px !important;
+        line-height: 1.55;
+      }
+
+      .hero-section .hero-inner main .mt-10 {
+        margin-top: 28px;
+      }
+
+      .hero-section .hero-inner main a {
+        width: 100%;
+        max-width: 270px;
+
+        padding:
+          12px
+          20px;
+
+        font-size: 12px;
+      }
+
+
+      /* -----------------------------------------------------
+         HERO VIDEO
+         ----------------------------------------------------- */
+
+      .hero-section .video-bg {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: none !important;
+      }
+
+
+      /* -----------------------------------------------------
+         ABOUT
+         ----------------------------------------------------- */
+
+      .about {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+          70px
+          16px
+          80px;
+
+        overflow: hidden;
+      }
+
+      .about-bg {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: none !important;
+      }
+
+      .about-wrap {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+      }
+
+      .about h2 {
+        width: 100%;
+
+        margin:
+          0
+          0
+          30px;
+
+        font-size:
+          clamp(
+            28px,
+            9vw,
+            40px
+          );
+
+        line-height: 1.05;
+      }
+
+      .about-cols {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+      }
+
+      .about-card {
+        width: 100%;
+        min-width: 0;
+
+        padding:
+          24px
+          18px;
+
+        border-radius: 20px;
+      }
+
+      .about-card h3 {
+        width: 100%;
+
+        font-size: 14px;
+
+        line-height: 1.2;
+
+        padding:
+          11px
+          10px;
+
+        margin-bottom: 15px;
+      }
+
+      .about-card p,
+      .about-card li {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+
+      /* -----------------------------------------------------
+         SERVICES
+         ----------------------------------------------------- */
+
+      .services {
+        position: relative;
+
+        width: 100%;
+        max-width: 100%;
+
+        min-height: 100svh;
+
+        overflow: hidden;
+      }
+
+      .services-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: none !important;
+
+        animation: none !important;
+      }
+
+      .services-head {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        padding:
+          65px
+          16px
+          0;
+      }
+
+      .services-head h2 {
+        font-size:
+          clamp(
+            28px,
+            9vw,
+            40px
+          );
+
+        line-height: 1.05;
+      }
+
+      .services-head p {
+        font-size: 15px;
+        line-height: 1.4;
+
+        margin-top: 8px;
+      }
+
+      .services-badge {
+        top: 14px;
+        right: 12px;
+
+        padding:
+          8px
+          13px;
+
+        font-size: 11px;
+      }
+
+      .glass-kb {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+
+        width: calc(100% - 32px) !important;
+
+        max-width: none !important;
+
+        margin:
+          30px
+          16px
+          40px !important;
+
+        padding:
+          11px !important;
+
+        transform: none !important;
+
+        gap: 9px;
+
+        border-radius: 20px;
+      }
+
+      .kb-row {
+        display: grid;
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        padding: 0 !important;
+
+        width: 100%;
+      }
+
+      .k {
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: 70px;
+
+        padding:
+          9px
+          6px;
+
+        font-size: 10px;
+
+        line-height: 1.25;
+
+        border-radius: 12px;
+
+        overflow-wrap: break-word;
+      }
+
+
+      /* -----------------------------------------------------
+         WHEN
+         ----------------------------------------------------- */
+
+      .when {
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
+      }
+
+      .when-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: none !important;
+      }
+
+      .when-wrap {
+        width: auto;
+        max-width: none;
+
+        margin:
+          0
+          16px;
+
+        padding:
+          65px
+          18px
+          22px;
+
+        border-radius: 22px;
+
+        background:
+          rgba(
+            248,
+            243,
+            238,
+            0.6
+          );
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .when h2 {
+        font-size:
+          clamp(
+            27px,
+            8vw,
+            38px
+          );
+
+        line-height: 1.05;
+
+        margin-bottom: 20px;
+      }
+
+      .when-intro {
+        width: 100%;
+
+        margin:
+          0
+          0
+          10px;
+
+        padding: 17px;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+        text-align: left;
+      }
+
+      .when-cards {
+        width: auto;
+        max-width: none;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+
+        margin:
+          0
+          16px
+          40px;
+
+        padding: 0;
+      }
+
+      .when-card {
+        width: 100%;
+        min-width: 0;
+
+        padding:
+          20px
+          17px;
+
+        border-radius: 20px;
+      }
+
+      .when-card h3 {
+        font-size: 17px;
+
+        line-height: 1.2;
+      }
+
+      .when-card li {
+        font-size: 14px;
+
+        line-height: 1.5;
+
+        padding-left: 20px;
+      }
+
+
+      /* -----------------------------------------------------
+         SIGNUP
+         ----------------------------------------------------- */
+
+      .signup {
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
+      }
+
+      .signup-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: none !important;
+      }
+
+      .signup-wrap {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+          65px
+          16px
+          70px;
+      }
+
+      .signup h2 {
+        font-size:
+          clamp(
+            27px,
+            8vw,
+            38px
+          );
+
+        line-height: 1.1;
+      }
+
+      .signup-sub {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .signup-form {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+          22px
+          16px;
+
+        border-radius: 20px;
+      }
+
+      .signup-form input[type='text'],
+      .signup-form input[type='tel'],
+      .signup-form input[type='email'] {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+      }
+
+      .signup-agree {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .signup-form button {
+        width: auto;
+        max-width: 100%;
+
+        padding:
+          13px
+          30px;
+      }
+
+      .signup-badges {
+        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+      }
+
+      .signup-badge {
+        width: 100%;
+        min-width: 0;
+
+        font-size: 13px;
+
+        padding: 16px;
+      }
+
+
+      /* -----------------------------------------------------
+         FOOTER
+         ----------------------------------------------------- */
+
+      .footer {
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
+      }
+
+      .footer-wrap {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding:
+          50px
+          16px;
+
+        min-height: auto;
+      }
+
+      .footer-col {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .footer-form {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+          20px
+          16px;
+      }
+
+      .footer-form input[type='email'],
+      .footer-form input[type='text'] {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+      }
+
+      .footer-form button {
+        max-width: 100%;
+      }
+
+
+      /* -----------------------------------------------------
+         VEILS
+         ----------------------------------------------------- */
+
+      .veil-top,
+      .veil-bottom {
+        width: 100%;
+        max-width: 100%;
+      }
+
+
+      /* -----------------------------------------------------
+         FLOATING ELEMENTS
+         ----------------------------------------------------- */
 
       .floating-orb {
-        animation: float 14s ease-in-out infinite alternate;
+        max-width: none;
+        pointer-events: none;
+      }
+
+      .floating-orb.left-\[12\%\] {
+        left: -80px;
       }
 
       .floating-orb.delay {
-        animation-delay: 2s;
+        right: -100px;
       }
+    }
+  </style>
+</head>
 
-      @keyframes float {
-        0% {
-          transform: translate3d(0, 0, 0) scale(1);
-        }
-        100% {
-          transform: translate3d(18px, -16px, 0) scale(1.08);
-        }
-      }
+<body class="text-white antialiased">
 
-      .logo-compass {
-        position: relative;
-        width: 56px;
-        height: 56px;
-        border-radius: 9999px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-      }
+  <!-- =====================================================
+       TOPBAR
+       ===================================================== -->
 
-      .logo-compass::before,
-      .logo-compass::after {
-        content: '';
-        position: absolute;
-        inset: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        border-radius: 9999px;
-      }
+  <header class="topbar">
 
-      .logo-compass::after {
-        inset: 24px 18px 18px 24px;
-        border-color: rgba(255, 255, 255, 0.2);
-      }
+    <div class="topbar-left">
 
-      .logo-compass svg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-      }
+      <div
+        class="topbar-logo-wrap"
+        aria-label="Логотип психологического центра"
+      >
 
-      .glass-card {
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
+        <svg
+          class="topbar-logo"
+          viewBox="0 0 64 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
 
-      .mini-bullet {
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 9999px;
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
-        flex-shrink: 0;
-      }
+          <defs>
 
-      /* Smooth scroll and scroll-snap */
-      html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
-      section, footer { scroll-snap-align: start; }
+            <linearGradient
+              id="lgRing"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="0"
+                stop-color="#fbc4d9"
+              />
 
-      /* Ensure stacking order so each next block lies above the previous */
-      .hero, .hero-section { position: relative; z-index: 1; }
-      .about { position: relative; z-index: 2; }
-      .services { position: relative; z-index: 3; }
-      .when { position: relative; z-index: 4; }
-      .signup { position: relative; z-index: 5; }
-      .footer { position: relative; z-index: 6; }
+              <stop
+                offset="1"
+                stop-color="#ec6fa0"
+              />
+            </linearGradient>
 
-      /* Video/background at the bottom */
-      .video-bg, .about-bg, .services-video, .when-video, .signup-video { z-index: 0; position: relative; }
-      .video-bg { position: absolute; inset: 0; z-index: 0; }
-      .about-bg { position: absolute; inset: 0; z-index: 0; }
-      .when-video, .signup-video { z-index: 0; }
-      .services-video { z-index: 0; position: relative; }
+            <linearGradient
+              id="lgNeedle"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="1"
+            >
+              <stop
+                offset="0"
+                stop-color="#ffffff"
+              />
 
-      /* Veil gradients inside each block (top and bottom) */
-      .veil-top, .veil-bottom {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 140px;
-        pointer-events: none;
-        z-index: 1; /* under text */
-      }
-      .veil-top { top: 0; background: linear-gradient(to bottom, rgba(250,246,249,0.9), rgba(250,246,249,0)); }
-      .veil-bottom { bottom: 0; background: linear-gradient(to bottom, rgba(250,246,249,0), rgba(250,246,249,0.9)); }
+              <stop
+                offset=".5"
+                stop-color="#f8a5c2"
+              />
 
-      /* Section anchor offset to account for fixed topbar */
-      #hero, #about, #services, #when, #signup, #footer { scroll-margin-top: 70px; }
+              <stop
+                offset="1"
+                stop-color="#ec6fa0"
+              />
+            </linearGradient>
 
-      /* Topbar (fixed navigation) */
-      .topbar{ position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:10px 28px; gap:28px; background:rgba(255,255,255,.55); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,.7); }
-      .topbar-left{ display:flex; align-items:center; gap:12px; }
-      .topbar-center{ display:flex; gap:28px; justify-content:center; flex:1; }
-      .topbar-right{ display:flex; align-items:center; gap:12px; }
-      .topbar a{ font-family:'Manrope',sans-serif; font-weight:600; font-size:14px; color:#3a4456; text-decoration:none; }
-      .topbar a:hover{ color:#ec6fa0; }
-      .topbar .topbar-phone{ color:#ec6fa0; font-weight:700; text-decoration:none; }
-      .topbar-logo{ width:46px; height:46px; filter:drop-shadow(0 2px 3px rgba(214,116,157,.35)); }
-      @media (max-width:768px){ .topbar{ flex-wrap:wrap; gap:12px; padding:12px 16px; }
-              .topbar-center{ order:2; width:100%; justify-content:center; flex-wrap:wrap; }
-              .topbar-left, .topbar-right{ width:auto; }
-      }
+          </defs>
 
-      /* Ensure main content wrappers appear above veils */
-      .hero-inner, .about-wrap, .services-head, .services-badge, .when-wrap, .signup-wrap, .footer-wrap { position: relative; z-index: 4; }
+          <circle
+            cx="32"
+            cy="32"
+            r="30"
+            stroke="url(#lgRing)"
+            stroke-width="1.6"
+          />
 
-      /* Hero pill above heading */
-      .hero-section .hero-inner p.mb-5 {
-        background: rgba(255,255,255,.28);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,.45);
-        border-radius: 999px;
-        padding: 8px 20px;
-        display: inline-block;
-        color: #2e3a4d;
-        font-weight: 700;
-      }
+          <circle
+            cx="32"
+            cy="32"
+            r="26.5"
+            stroke="url(#lgRing)"
+            stroke-width="1"
+          />
 
-      /* Hero subtitle under the main heading */
-      .hero-section .hero-inner .max-w-2xl {
-        color: #2e3a4d;
-        font-weight: 600;
-        font-size: 19px;
-        text-shadow: 0 1px 3px rgba(255,255,255,0.85);
-      }
+          <path
+            d="M32 8 L36.5 32 L32 56 L27.5 32 Z"
+            fill="url(#lgNeedle)"
+          />
 
-    /* === 3D-КНОПКА ОТПРАВИТЬ === */
-footer button{ box-shadow:0 5px 0 #e0559a, 0 10px 20px rgba(224,85,154,.35) !important; transition:transform .15s, box-shadow .15s; }
-footer button:hover{ transform:translateY(2px); box-shadow:0 3px 0 #e0559a, 0 6px 14px rgba(224,85,154,.3) !important; }
-footer button:active{ transform:translateY(4px); box-shadow:0 1px 0 #e0559a !important; }
+          <path
+            d="M14 32 L32 27.5 L50 32 L32 36.5 Z"
+            fill="url(#lgNeedle)"
+            opacity=".85"
+          />
 
-/* ===== ИСПРАВЛЕНИЯ ДЛЯ МОБИЛЬНЫХ ВИДЕО ===== */
-@media (max-width: 768px) {
-  .video-bg, .about-bg, .services-video, .when-video, .signup-video {
-    position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-  
-  .about-bg {
-    transform: scale(1) !important;
-  }
-  
-  .services-video, .when-video, .signup-video {
-    min-height: 100vh;
-  }
-}
-</style>
-  </head>
-  <body class="text-white antialiased">
-    <header class="topbar">
-      <div class="topbar-left">
-        <div class="topbar-logo-wrap" aria-label="Логотип психологического центра">
-          <svg class="topbar-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="lgRing" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#fbc4d9"/><stop offset="1" stop-color="#ec6fa0"/>
-              </linearGradient>
-              <linearGradient id="lgNeedle" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#f8a5c2"/><stop offset="1" stop-color="#ec6fa0"/>
-              </linearGradient>
-            </defs>
-            <circle cx="32" cy="32" r="30" stroke="url(#lgRing)" stroke-width="1.6"/>
-            <circle cx="32" cy="32" r="26.5" stroke="url(#lgRing)" stroke-width="1"/>
-            <path d="M32 8 L36.5 32 L32 56 L27.5 32 Z" fill="url(#lgNeedle)"/>
-            <path d="M14 32 L32 27.5 L50 32 L32 36.5 Z" fill="url(#lgNeedle)" opacity=".85"/>
-            <circle cx="32" cy="32" r="3" fill="#ffffff"/>
-          </svg>
-        </div>
-        <div class="text-left leading-none">
-         <div class="brand-sub">психологический центр</div>
-         <div class="brand-name mt-1">Погода в доме</div>
-        </div>
+          <circle
+            cx="32"
+            cy="32"
+            r="3"
+            fill="#ffffff"
+          />
+
+        </svg>
+
       </div>
 
-      <nav class="topbar-center">
-        <a href="#hero">Главная</a>
-        <a href="#about">Семья</a>
-        <a href="#services">Помощь</a>
-        <a href="#when">Когда к психологу</a>
-        <a href="#signup">Записаться</a>
-        <a href="#footer">Контакты</a>
-      </nav>
+      <div class="text-left leading-none">
 
-      <div class="topbar-right">
-        <a href="tel:+79991234567" class="topbar-phone">+7 (999) 123-45-67</a>
+        <div class="brand-sub">
+          психологический центр
+        </div>
+
+        <div class="brand-name mt-1">
+          Погода в доме
+        </div>
+
       </div>
-    </header>
 
-    <section id="hero" class="hero-section relative min-h-screen overflow-hidden">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <video
-        class="video-bg"
-        src="bg-video.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-      ></video>
-      <div class="hero-overlay"></div>
-      <div class="hero-glow absolute inset-0"></div>
+    </div>
 
-      <div class="floating-orb absolute left-[12%] top-[18%] h-52 w-52 rounded-full bg-white/10 blur-3xl"></div>
-      <div class="floating-orb delay absolute bottom-[12%] right-[14%] h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
 
-      <div class="hero-inner relative z-10 flex min-h-screen flex-col">
-        <header class="pt-6 sm:pt-8">
-          <div class="flex items-center justify-between gap-4 px-0 sm:px-0 lg:px-0">
-            <!-- Logo and phone moved to topbar -->
+    <!-- Навигация -->
+
+    <nav class="topbar-center">
+
+      <a href="#hero">
+        Главная
+      </a>
+
+      <a href="#about">
+        Семья
+      </a>
+
+      <a href="#services">
+        Помощь
+      </a>
+
+      <a href="#when">
+        Когда к психологу
+      </a>
+
+      <a href="#signup">
+        Записаться
+      </a>
+
+      <a href="#footer">
+        Контакты
+      </a>
+
+    </nav>
+
+
+    <div class="topbar-right">
+
+      <a
+        href="tel:+79991234567"
+        class="topbar-phone"
+      >
+        +7 (999) 123-45-67
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section
+    id="hero"
+    class="hero-section relative min-h-screen overflow-hidden"
+  >
+
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
+
+    <video
+      class="video-bg"
+      src="bg-video.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-glow absolute inset-0"></div>
+
+    <div
+      class="floating-orb absolute left-[12%] top-[18%] h-52 w-52 rounded-full bg-white/10 blur-3xl"
+    ></div>
+
+    <div
+      class="floating-orb delay absolute bottom-[12%] right-[14%] h-72 w-72 rounded-full bg-white/10 blur-3xl"
+    ></div>
+
+
+    <div class="hero-inner relative z-10 flex min-h-screen flex-col">
+
+      <header class="pt-6 sm:pt-8">
+
+        <div class="flex items-center justify-between gap-4 px-0">
+
+          <!-- Логотип и телефон находятся в topbar -->
+
+        </div>
+
+      </header>
+
+
+      <main
+        class="flex flex-1 items-center justify-center pb-10 pt-8 sm:pb-16 lg:pb-20"
+      >
+
+        <div class="max-w-5xl text-center">
+
+          <p
+            class="mb-5 text-[10px] font-semibold uppercase tracking-wider text-[#3f4a5a] sm:text-xs"
+          >
+            Психологическая поддержка • гармония • ясность
+          </p>
+
+
+          <h1
+            class="brand-display text-6xl sm:text-7xl lg:text-[5.5rem]"
+          >
+
+            <span class="brand-line block leading-none">
+              ПОГОДА
+            </span>
+
+            <span class="brand-line mt-2 block leading-none">
+              В ДОМЕ
+            </span>
+
+          </h1>
+
+
+          <p
+            class="mx-auto mt-6 max-w-2xl text-sm font-medium leading-relaxed text-[#3f4a5a] sm:text-base lg:text-lg"
+          >
+            Помогаем найти опору, снять внутреннее напряжение и вернуть ощущение покоя,
+            близости и силы в каждом доме — и в каждом человеке.
+          </p>
+
+
+          <div
+            class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          >
+
+            <a
+              href="#signup"
+              class="inline-flex items-center justify-center rounded-full border-none bg-white/50 px-8 py-3 text-sm font-bold uppercase tracking-normal text-[#3a3a4a] transition hover:bg-white/70"
+            >
+              Записаться
+            </a>
+
+            <a
+              href="#about"
+              class="inline-flex items-center justify-center rounded-full border-none bg-white/35 px-8 py-3 text-sm font-bold uppercase tracking-normal text-[#3a3a4a] backdrop-blur-sm transition hover:bg-white/55"
+            >
+              Узнать больше
+            </a>
+
           </div>
-        </header>
- 
-        <main class="flex flex-1 items-center justify-center pb-10 pt-8 sm:pb-16 lg:pb-20">
-          <div class="max-w-5xl text-center">
-            <p class="mb-5 text-[10px] font-semibold uppercase tracking-wider text-[#3f4a5a] sm:text-xs">
-              Психологическая поддержка • гармония • ясность
-            </p>
 
-            <h1 class="brand-display text-6xl sm:text-7xl lg:text-[5.5rem]">
-              <span class="brand-line block leading-none">ПОГОДА</span>
-              <span class="brand-line mt-2 block leading-none">В ДОМЕ</span>
-            </h1>
-
-            <p class="mx-auto mt-6 max-w-2xl text-sm font-medium leading-relaxed text-[#3f4a5a] sm:text-base lg:text-lg">
-              Помогаем найти опору, снять внутреннее напряжение и вернуть ощущение покоя,
-              близости и силы в каждом доме — и в каждом человеке.
-            </p>
- 
-            <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="#"
-                class="inline-flex items-center justify-center rounded-full border-none bg-white/50 px-8 py-3 text-sm font-bold uppercase tracking-normal text-[#3a3a4a] transition hover:bg-white/70"
-              >
-                Записаться
-              </a>
-              <a
-                href="#"
-                class="inline-flex items-center justify-center rounded-full border-none bg-white/35 px-8 py-3 text-sm font-bold uppercase tracking-normal text-[#3a3a4a] backdrop-blur-sm transition hover:bg-white/55"
-              >
-                Узнать больше
-              </a>
-            </div>
-          </div>
-        </main>
-      </div>
-    </section>
-
-    <section id="about" class="about" aria-label="О центре и семье">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <style>
-        .about {
-          position: relative;
-          width: 100%;
-          margin: 0;
-          box-sizing: border-box;
-          overflow: hidden;
-          padding: 110px 24px 150px;
-          background: none;
-        }
-
-        .about-bg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transform: scale(1.4);
-          z-index: 0;
-        }
-
-        .about-wrap {
-          position: relative;
-          z-index: 4; /* content above veils */
-          max-width: 1160px;
-          margin: 0 auto;
-        }
-
-        .about h2 {
-          margin: 0 0 58px;
-          text-align: center;
-          font-family: 'Nunito', sans-serif;
-          font-size: clamp(30px, 4vw, 52px);
-          font-weight: 900;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          color: #f48fb8;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
-          opacity: 0;
-          transform: scale(0.9) translateY(30px);
-          animation: titleIn 0.8s ease-out both;
-        }
-
-        .about-cols {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 28px;
-          align-items: stretch;
-        }
-
-        .about-card {
-          position: relative;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.2));
-          border: 1.5px solid rgba(255, 255, 255, 0.7);
-          border-radius: 24px;
-          padding: 36px 32px;
-          box-shadow: none;
-          backdrop-filter: blur(16px) saturate(140%);
-          -webkit-backdrop-filter: blur(16px) saturate(140%);
-          transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.45s ease;
-          opacity: 0;
-          transform: scale(0.82) translateY(40px);
-          filter: blur(8px);
-          animation: cardIn 0.8s ease-out both;
-        }
-
-        .about-card:nth-child(1) {
-          animation-delay: 0.15s;
-        }
-
-        .about-card:nth-child(2) {
-          animation-delay: 0.3s;
-        }
-
-        .about-card:nth-child(3) {
-          animation-delay: 0.45s;
-        }
-
-        .about-card:hover {
-          transform: scale(1.05) translateY(-6px);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
-        }
-
-        .about-card h3 {
-          margin: 0 0 18px;
-          padding: 13px 22px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.28));
-          border: 1.5px solid rgba(255, 255, 255, 0.85);
-          border-radius: 999px;
-          backdrop-filter: blur(12px) saturate(140%);
-          -webkit-backdrop-filter: blur(12px) saturate(140%);
-          font-family: 'Nunito', sans-serif;
-          font-size: 1.1rem;
-          font-weight: 900;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          text-align: center;
-          color: #f48fb8;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
-          transition: transform 0.45s ease;
-        }
-
-        .about-card:hover h3 {
-          transform: scale(1.04);
-        }
-
-        .about-card p,
-        .about-card li {
-          font-family: 'Manrope', sans-serif;
-          font-size: 15.5px;
-          line-height: 1.7;
-          color: #4a4a5a;
-          text-shadow: none;
-        }
-
-        .about-card p {
-          margin: 0;
-        }
-
-        .about-card ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-
-        .about-card li {
-          position: relative;
-          margin: 10px 0;
-          padding-left: 28px;
-          opacity: 0;
-          animation: listDotReveal 0.4s ease forwards;
-          animation-delay: 0.65s;
-        }
-
-        .about-card li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 11px;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #f4a6c0;
-        }
-
-        @keyframes titleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9) translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-
-        @keyframes cardIn {
-          from {
-            opacity: 0;
-            transform: scale(0.82) translateY(40px);
-            filter: blur(8px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            filter: blur(0);
-          }
-        }
-
-        @keyframes listDotReveal {
-          0% {
-            opacity: 0;
-            transform: translateY(6px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .about,
-          .about h2,
-          .about-card,
-          .about-card li,
-          .about-card h3 {
-            animation: none !important;
-            transition: none !important;
-            transform: none !important;
-            filter: none !important;
-            opacity: 1 !important;
-          }
-        }
-
-        @media (max-width: 960px) {
-          .about {
-            padding: 90px 20px 110px;
-          }
-
-          .about-cols {
-            grid-template-columns: 1fr;
-          }
-        }
-      
-      /* === КОНТРАСТ: БЛОК 1 (точные имена) === */
-.video-bg{ filter:saturate(1.3) contrast(1.1) !important; }
-.hero-overlay{ background:rgba(255,255,255,.12) !important; opacity:.4 !important; }
-.veil-top, .veil-bottom{ opacity:.5 !important; }
-#hero p{ color:#22303f !important; font-weight:600 !important; }
-#hero a{ color:#2e3a4d !important; font-weight:700 !important; }
-</style>
-
-      <video class="about-bg" autoplay muted loop playsinline preload="auto">
-        <source src="flowers.mp4" type="video/mp4" />
-      </video>
-
-      <div class="about-wrap">
-        <h2>Всё начинается с семьи</h2>
-        <div class="about-cols">
-          <article class="about-card">
-            <h3>Наша деятельность</h3>
-            <p>
-              Мы оказываем комплексную психологическую помощь и поддержку в сложных жизненных
-              ситуациях: от кризисов и тревоги до семейных трудностей, помогая человеку почувствовать
-              себя понятым и сильным.
-            </p>
-          </article>
-
-          <article class="about-card">
-            <h3>Ценность семьи</h3>
-            <p>
-              В доме, где тепло, любовь и внимание, человек становится сильнее. Мы верим, что семья
-              — это пространство, где можно услышать себя, восстановить душевную гармонию и
-              почувствовать поддержку.
-            </p>
-          </article>
-
-          <article class="about-card">
-            <h3>Наши принципы</h3>
-            <ul>
-              <li>Уважение</li>
-              <li>Конфиденциальность</li>
-              <li>Профессиональный подход</li>
-            </ul>
-          </article>
         </div>
+
+      </main>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       ABOUT
+       ===================================================== -->
+
+  <section
+    id="about"
+    class="about"
+    aria-label="О центре и семье"
+  >
+
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
+
+
+    <video
+      class="about-bg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+
+      <source
+        src="flowers.mp4"
+        type="video/mp4"
+      />
+
+    </video>
+
+
+    <div class="about-wrap">
+
+      <h2>
+        Всё начинается с семьи
+      </h2>
+
+
+      <div class="about-cols">
+
+
+        <article class="about-card">
+
+          <h3>
+            Наша деятельность
+          </h3>
+
+          <p>
+            Мы оказываем комплексную психологическую помощь и поддержку
+            в сложных жизненных ситуациях: от кризисов и тревоги до
+            семейных трудностей, помогая человеку почувствовать себя
+            понятым и сильным.
+          </p>
+
+        </article>
+
+
+        <article class="about-card">
+
+          <h3>
+            Ценность семьи
+          </h3>
+
+          <p>
+            В доме, где тепло, любовь и внимание, человек становится сильнее.
+            Мы верим, что семья — это пространство, где можно услышать себя,
+            восстановить душевную гармонию и почувствовать поддержку.
+          </p>
+
+        </article>
+
+
+        <article class="about-card">
+
+          <h3>
+            Наши принципы
+          </h3>
+
+          <ul>
+
+            <li>
+              Уважение
+            </li>
+
+            <li>
+              Конфиденциальность
+            </li>
+
+            <li>
+              Профессиональный подход
+            </li>
+
+          </ul>
+
+        </article>
+
+
       </div>
-    </section>
 
-    
+    </div>
 
-    <section id="services" class="services" aria-label="Наши услуги">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <style>
-        .services {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          margin: 0;
-          font-family: 'Manrope', sans-serif; /* ensure all body text in services uses Manrope */
-        }
+  </section>
 
 
-        .services-video {
-          display: block;
-          width: 100%;
-          height: auto;
-          animation: servicesSway 10s ease-in-out infinite;
-          transform-origin: 50% 60%;
-        }
+  <!-- =====================================================
+       SERVICES
+       ===================================================== -->
 
-        .services-badge {
-          position: absolute;
-          top: 14px;
-          right: 14px;
-          z-index: 2;
-          padding: 14px 30px;
-          background: rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          border-radius: 999px;
-          font-family: 'Nunito', sans-serif;
-          font-weight: 900;
-          font-size: 18px;
-          color: #f48fb8;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b;
-        }
+  <section
+    id="services"
+    class="services"
+    aria-label="Наши услуги"
+  >
 
-        .services-head {
-          position: absolute;
-          top: 36px;
-          left: 0;
-          right: 0;
-          text-align: center;
-          z-index: 1;
-        }
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
 
-        .services-head h2 {
-          margin: 0;
-          font-family: 'Nunito', sans-serif;
-          font-size: clamp(28px, 3.5vw, 44px);
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: 0.02em;
-          color: #f48fb8;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
-        }
 
-        .services-head p {
-          margin: 8px 0 0;
-          font-family: 'Manrope', sans-serif;
-          font-size: 26px;
-          font-weight: 600;
-          color: #3f4a5a;
-        }
+    <div class="services-badge">
+      Погода в доме
+    </div>
 
-        @keyframes servicesSway {
-          0% {
-            transform: scale(1.03) rotate(0deg) translateY(0);
-          }
-          50% {
-            transform: scale(1.04) rotate(0.3deg) translateY(-5px);
-          }
-          100% {
-            transform: scale(1.03) rotate(0deg) translateY(0);
-          }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-          .services-video {
-            animation: none;
-          }
-        }
+    <div class="services-head">
 
-        /* Glass keyboard — two rows (5 + 4) */
-        .glass-kb{ position:absolute; right:4%;                 top:45%; transform:translateY(-50%); z-index:4; display:flex; flex-direction:column; gap:12px; padding:20px; background:rgba(255,255,255,.35); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.65); border-radius:26px; }
-        .kb-row{ display:flex; gap:12px; justify-content:center; }
-        .kb-row:nth-child(2){ padding-left:30px; }
-        .k{ width:170px; min-height:92px; border-radius:16px; padding:12px; font-family:'Manrope',sans-serif; font-weight:700; font-size:14px; line-height:1.35; color:#3a4456; background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.4)); border:1px solid rgba(255,255,255,.9); box-shadow:0 6px 14px rgba(120,140,170,.22), inset 0 2px 4px rgba(255,255,255,.95), inset 0 -5px 10px rgba(160,180,210,.28); cursor:pointer; transition:transform .15s; }
-        .k.g{ background:linear-gradient(180deg, rgba(198,240,222,.95), rgba(140,215,185,.55)); color:#2e5d4b; }
-        .k:hover{ transform:translateY(3px); }
+      <h2>
+        НАША ПОМОЩЬ
+      </h2>
 
-        @media (max-width:1200px){ .glass-kb{ position:static; transform:none; margin:40px auto 0; width:max-content; max-width:94%; } .kb-row{ flex-wrap:wrap; } }
+      <p>
+        Выберите то, что нужно именно вам
+      </p>
 
-      </style>
+    </div>
 
-      <div class="services-badge">Погода в доме</div>
-      <div class="services-head">
-        <h2>НАША ПОМОЩЬ</h2>
-        <p>Выберите то, что нужно именно вам</p>
+
+    <video
+      class="services-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+
+      <source
+        src="services.mp4"
+        type="video/mp4"
+      />
+
+    </video>
+
+
+    <div class="glass-kb">
+
+      <div class="kb-row">
+
+        <button class="k">
+          Индивидуальное консультирование
+        </button>
+
+        <button class="k">
+          Семейное консультирование
+        </button>
+
+        <button class="k">
+          Бизнес консультирование
+        </button>
+
+        <button class="k">
+          Детское консультирование
+        </button>
+
+        <button class="k">
+          Парам
+        </button>
+
       </div>
-      <video class="services-video" autoplay muted loop playsinline preload="auto">
-        <source src="services.mp4" type="video/mp4" />
-      </video>
 
-      <div class="glass-kb">
-        <div class="kb-row">
-          <button class="k">Индивидуальное консультирование</button>
-          <button class="k">Семейное консультирование</button>
-          <button class="k">Бизнес консультирование</button>
-          <button class="k">Детское консультирование</button>
-          <button class="k">Парам</button>
+
+      <div class="kb-row">
+
+        <button class="k">
+          Переживание утраты
+        </button>
+
+        <button class="k">
+          Развод
+        </button>
+
+        <button class="k">
+          Самореализация
+        </button>
+
+        <button class="k g">
+          Онлайн консультация
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       WHEN
+       ===================================================== -->
+
+  <section
+    id="when"
+    class="when"
+    aria-label="Когда обратиться к психологу"
+  >
+
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
+
+
+    <video
+      class="when-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+
+      <source
+        src="when.mp4"
+        type="video/mp4"
+      />
+
+    </video>
+
+
+    <div class="when-wrap">
+
+      <h2>
+        Когда можно обратиться к психологу
+      </h2>
+
+
+      <p class="when-intro">
+        К психологу необходимо обратиться, когда в жизни возникают затруднения,
+        не дожидаясь, пока всё вокруг начнёт рушиться (опытный специалист способен
+        помочь и при таких запущенных случаях). Проблемы необходимо решать!
+        Бег от них бессмысленен, так же, как бег от самого себя. Жизнь возвратит
+        проблемы, но только в более сложной форме.
+      </p>
+
+    </div>
+
+
+    <div class="when-cards">
+
+
+      <div class="when-card">
+
+        <h3>
+          Когда трудно с собой
+        </h3>
+
+        <ul>
+
+          <li>
+            Когда чувствуете пустоту и скуку, отсутствие положительных эмоций,
+            потеряли смысл и радость жизни
+          </li>
+
+          <li>
+            Когда Вы потеряли веру в свои силы и способности и в то,
+            что достойны того, чего хотите от жизни
+          </li>
+
+          <li>
+            Когда Вы постоянно болеете или плохо себя чувствуете
+          </li>
+
+          <li>
+            Когда Вы живёте не так, как хотели бы жить
+          </li>
+
+          <li>
+            Когда Вы переживаете кризис — личный, семейный,
+            профессиональный, социальный
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="when-card">
+
+        <h3>
+          Когда трудно с близкими
+        </h3>
+
+        <ul>
+
+          <li>
+            Когда есть потребность разрешить проблему,
+            требующую помощи или поддержки со стороны
+          </li>
+
+          <li>
+            Когда у Вас есть сложности или конфликты
+            во взаимоотношениях: семейных, профессиональных, личностных
+          </li>
+
+          <li>
+            Когда возникают трудности в выборе партнёра
+          </li>
+
+          <li>
+            Когда Вы пережили утрату (смерть дорогого человека,
+            развод, физическое либо нравственное насилие и т.д.)
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="when-card">
+
+        <h3>
+          Когда пора перемен
+        </h3>
+
+        <ul>
+
+          <li>
+            Когда работа перестаёт радовать
+          </li>
+
+          <li>
+            Когда появилось чувство, что Вы ходите по замкнутому кругу,
+            перепробовали все методы и не можете решить проблему,
+            а ситуация лишь обостряется
+          </li>
+
+          <li>
+            Когда у Вас есть потребность в переменах,
+            но Вы не понимаете, с чего начать
+          </li>
+
+          <li>
+            Когда свои возможности и способности полностью не реализуете,
+            отсутствует самореализация
+          </li>
+
+        </ul>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SIGNUP
+       ===================================================== -->
+
+  <section
+    id="signup"
+    class="signup"
+    aria-label="Записаться на консультацию"
+  >
+
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
+
+
+    <video
+      class="signup-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+
+      <source
+        src="horses.mp4"
+        type="video/mp4"
+      />
+
+    </video>
+
+
+    <div class="signup-wrap">
+
+      <h2>
+        Записаться на консультацию
+      </h2>
+
+
+      <p class="signup-sub">
+
+        Свяжитесь с нами по телефону:
+
+        <a href="tel:+79991234567">
+          +7 (999) 123-45-67
+        </a>
+
+        <br />
+
+        или заполните форму ниже
+
+      </p>
+
+
+      <form
+        class="signup-form"
+        onsubmit="return false;"
+      >
+
+        <label>
+
+          <span>
+            Ваше Имя *
+          </span>
+
+          <input
+            type="text"
+            required
+          />
+
+        </label>
+
+
+        <label>
+
+          <span>
+            Телефон *
+          </span>
+
+          <input
+            type="tel"
+            required
+          />
+
+        </label>
+
+
+        <label>
+
+          <span>
+            Электронная почта
+          </span>
+
+          <input
+            type="email"
+          />
+
+        </label>
+
+
+        <label>
+
+          <span>
+            Сообщение *
+          </span>
+
+          <input
+            type="text"
+            required
+          />
+
+        </label>
+
+
+        <label class="signup-agree">
+
+          <input
+            type="checkbox"
+            required
+          />
+
+          <span>
+            Нажимая кнопку «Отправить», Вы подтверждаете,
+            что ознакомились с Политикой конфиденциальности
+            и соглашаетесь с условиями обработки персональных данных
+          </span>
+
+        </label>
+
+
+        <button type="submit">
+          Отправить
+        </button>
+
+      </form>
+
+
+      <p class="signup-years">
+        Более 23 лет практики
+      </p>
+
+
+      <div class="signup-badges">
+
+        <div class="signup-badge">
+
+          <span class="tick">
+            ✓
+          </span>
+
+          Индивидуальное консультирование
+
         </div>
-        <div class="kb-row">
-          <button class="k">Переживание утраты</button>
-          <button class="k">Развод</button>
-          <button class="k">Самореализация</button>
-          <button class="k g">Онлайн консультация</button>
+
+
+        <div class="signup-badge">
+
+          <span class="tick">
+            ✓
+          </span>
+
+          Семейное консультирование
+
         </div>
+
+
+        <div class="signup-badge">
+
+          <span class="tick">
+            ✓
+          </span>
+
+          Бизнес консультирование
+
+        </div>
+
       </div>
 
-    </section>
+    </div>
 
-    <section id="when" class="when" aria-label="Когда обратиться к психологу">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <style>
-        .when{ position:relative; width:100%; overflow:hidden; background:none; font-family:'Manrope',sans-serif; }
-        .when::after{ content:''; position:absolute; inset:0; background:rgba(255,255,255,.22); pointer-events:none; }
-        .when-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center right; transform:scale(1.06); filter:brightness(1.18) saturate(1.05); }
-        .when-wrap{ position:relative; z-index:4; max-width:640px; margin:0 0 0 5%; padding:90px 0 20px; }
+  </section>
 
-        .when h2{
-          margin:0 0 24px;
-          font-family: 'Nunito', sans-serif;
-          font-weight:900;
-          color:#f48fb8;
-          font-size: clamp(28px, 3.5vw, 46px);
-          text-transform:uppercase;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150,60,110,0.22);
-          opacity: 0;
-          transform: translateY(24px) scale(0.98);
-          animation: titleIn 0.8s ease-out both;
-        }
 
-        .when-intro{
-          background:rgba(255,255,255,.55);
-          backdrop-filter:blur(14px);
-          -webkit-backdrop-filter:blur(14px);
-          border:1px solid rgba(255,255,255,.7);
-          border-radius:20px;
-          padding:22px 26px;
-          color:#3a4456;
-                  font-family:'Manrope',sans-serif;
-                  font-size:18px;
-                  font-weight:600;
-                  line-height:1.7;
-                  text-align:justify;
-                  text-shadow:none;
-                  margin:0 0 18px 0;
-                }
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
 
-        .when-cards{ position:relative; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1200px; margin:28px auto 70px; padding:0 24px; }
-        .when-card{ background:rgba(255,255,255,.55); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.7); border-radius:24px; padding:26px 28px; }
-        .when-card h3{
-          font-family:'Nunito',sans-serif;
-          font-weight:900;
-          color:#f48fb8;
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 4px 8px rgba(150,60,110,.18);
-          font-size:18px;
-          margin:0 0 14px;
-        }
-        .when-card ul{ list-style:none; margin:0; padding:0; }
-        .when-card li{ font-family:'Manrope',sans-serif; font-size:15px; color:#3a4456; font-weight:500; line-height:1.55; margin:0 0 10px; padding-left:22px; position:relative; }
-        .when-card li::before{ content:''; position:absolute; left:0; top:8px; width:8px; height:8px; border-radius:50%; background:#f4a6c0; }
+  <footer
+    id="footer"
+    class="footer"
+  >
 
-        .when-glass li::before{
-          content:'';
-          position:absolute;
-          left:0;
-          top:6px;
-          width:10px;
-          height:10px;
-          border-radius:50%;
-          background:#f4a6c0;
-        }
+    <div class="veil-top"></div>
+    <div class="veil-bottom"></div>
 
-        @media (max-width:768px){
-          .when-video{ display:none; }
-          .when-wrap{ margin:0 16px; background: rgba(248,243,238,.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius:24px; padding:32px 22px; }
-          .when{ padding-bottom:36px; }
-          .when-cards{ grid-template-columns:1fr; margin:0 16px 40px; }
-          .when-intro{ margin-right:16px; }
-        }
 
-        @media (prefers-reduced-motion: reduce){
-          .when h2, .when-glass{ animation:none !important; transition:none !important; transform:none !important; opacity:1 !important; }
-          .services-video, .when-video{ animation:none !important; }
-        }
-      
+    <div class="footer-wrap">
 
-      <video class="when-video" autoplay muted loop playsinline preload="auto">
-        <source src="when.mp4" type="video/mp4" />
-      </video>
 
-      <div class="when-wrap">
-        <h2>Когда можно обратиться к психологу</h2>
-        <p class="when-intro">К психологу необходимо обратиться, когда в жизни возникают затруднения, не дожидаясь, пока всё вокруг начнёт рушиться (опытный специалист способен помочь и при таких запущенных случаях). Проблемы необходимо решать! Бег от них бессмысленен, так же, как бег от самого себя. Жизнь возвратит проблемы, но только в более сложной форме.</p>
+      <div class="footer-col">
+
+        <h3>
+          Обратная связь
+        </h3>
+
+
+        <p class="f-phone">
+
+          <a href="tel:+79152615775">
+            +7 915 261 57 75
+          </a>
+
+        </p>
+
+
+        <p class="f-mail">
+
+          <a href="mailto:info@homepsychologist.ru">
+            info@homepsychologist.ru
+          </a>
+
+        </p>
+
+
+        <p class="f-area">
+          Работаем в ВАО:
+        </p>
+
+        <ul>
+
+          <li>
+            Измайлово
+          </li>
+
+          <li>
+            Партизанская
+          </li>
+
+        </ul>
+
+
+        <p class="f-area">
+          Консультирование в ЦАО:
+        </p>
+
+        <ul>
+
+          <li>
+            Новокузнецкая
+          </li>
+
+          <li>
+            Китай-город
+          </li>
+
+        </ul>
+
+
+        <p class="f-copy">
+          © 2017–2026 Все права защищены homepsychologist.ru
+        </p>
+
       </div>
 
-      <div class="when-cards">
-  <div class="when-card">
-    <h3>Когда трудно с собой</h3>
-    <ul>
-  <li>Когда чувствуете пустоту и скуку, отсутствие положительных эмоций, потеряли смысл и радость жизни</li>
-  <li>Когда Вы потеряли веру в свои силы и способности и в то, что достойны того, чего хотите от жизни</li>
-  <li>Когда Вы постоянно болеете или плохо себя чувствуете</li>
-  <li>Когда Вы живёте не так, как хотели бы жить</li>
-  <li>Когда Вы переживаете кризис — личный, семейный, профессиональный, социальный</li>
-    </ul>
-  </div>
-  <div class="when-card">
-    <h3>Когда трудно с близкими</h3>
-    <ul>
-  <li>Когда есть потребность разрешить проблему, требующую помощи или поддержки со стороны</li>
-  <li>Когда у Вас есть сложности или конфликты во взаимоотношениях: семейных, профессиональных, личностных</li>
-  <li>Когда возникают трудности в выборе партнёра</li>
-  <li>Когда Вы пережили утрату (смерть дорогого человека, развод, физическое либо нравственное насилие и т.д.)</li>
-    </ul>
-  </div>
-  <div class="when-card">
-    <h3>Когда пора перемен</h3>
-    <ul>
-  <li>Когда работа перестаёт радовать</li>
-  <li>Когда появилось чувство, что Вы ходите по замкнутому кругу, перепробовали все методы и не можете решить проблему, а ситуация лишь обостряется</li>
-  <li>Когда у Вас есть потребность в переменах, но Вы не понимаете, с чего начать</li>
-  <li>Когда свои возможности и способности полностью не реализуете, отсутствует самореализация</li>
-    </ul>
-  </div>
-</div>
-    </section>
 
-    <section id="signup" class="signup" aria-label="Записаться на консультацию">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <style>
-        .signup{ position:relative; width:100%; overflow:hidden; }
-        .signup-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.08); filter:brightness(1.12) saturate(1.05); }
-        .signup::after{ content:''; position:absolute; inset:0; background:rgba(255,255,255,.18); pointer-events:none; }
-        .signup-wrap{ position:relative; z-index:4; max-width:760px; margin:0 auto; padding:80px 24px 90px; text-align:center; }
+      <div class="footer-col">
 
-        .signup h2{
-          margin:0 0 12px;
-          font-family: 'Nunito', sans-serif;
-          font-weight:900;
-          color:#f48fb8;
-          text-transform:uppercase;
-          font-size: clamp(28px, 3.5vw, 46px);
-          text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150,60,110,.22);
-        }
+        <h3>
+          График работы
+        </h3>
 
-        .signup-sub{ font-family:'Manrope',sans-serif; font-size:18px; font-weight:600; color:#3a4456; margin:18px 0 28px; text-shadow:0 1px 3px rgba(255,255,255,.7); }
-        .signup-sub a{ color:#ec6fa0; text-decoration:none; font-weight:700; }
 
-        /* Ensure all small dark text in the signup block uses Manrope */
-        .signup-sub, .signup-form label, .signup-form label span, .signup-agree, .signup-agree span, .signup-badge { font-family: 'Manrope', sans-serif; }
+        <p>
+          <b>
+            Понедельник – суббота:
+          </b>
 
-        .signup-form{ background:rgba(255,255,255,.55); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.7); border-radius:24px; padding:30px 34px; display:flex; flex-direction:column; gap:16px; text-align:left; }
-        .signup-form label{ display:flex; flex-direction:column; gap:6px; font-family:'Manrope',sans-serif; font-size:15px; font-weight:600; color:#3a4456; }
-        .signup-form input[type=text],.signup-form input[type=tel],.signup-form input[type=email]{ background:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.9); border-radius:12px; padding:12px 16px; font-family:'Manrope',sans-serif; font-size:15px; color:#3a4456; outline:none; }
-        .signup-agree{ display:flex; flex-direction:row; align-items:flex-start; gap:10px; font-weight:500; font-size:13px; line-height:1.5; }
-        .signup-agree input{ margin-top:3px; }
+          9.00–21.00
+        </p>
 
-        .signup-form button{ align-self:center; margin-top:8px; background:linear-gradient(135deg,#f8a5c2,#f48fb8); color:#fff; border:none; border-radius:999px; padding:14px 40px; font-family:'Nunito',sans-serif; font-weight:800; font-size:16px; cursor:pointer; box-shadow:0 6px 18px rgba(244,143,184,.4); }
 
-        .signup-years{ font-family:'Nunito',sans-serif; font-weight:900; color:#f48fb8; text-transform:uppercase; font-size:clamp(20px,2.5vw,30px); margin:46px 0 22px; text-shadow:0 1px 0 #e57ba6,0 2px 0 #d96e9b,0 3px 6px rgba(150,60,110,.18); }
+        <p>
+          <b>
+            Воскресенье:
+          </b>
 
-        .signup-badges{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-        .signup-badge{ background:rgba(255,255,255,.5); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.7); border-radius:20px; padding:20px 18px; font-family:'Manrope',sans-serif; font-weight:600; font-size:15px; color:#3a4456; display:flex; align-items:center; gap:12px; text-align:left; }
-        .signup-badge .tick{ flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#a8e6cf,#7fd1ae); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+          по предварительной записи
+        </p>
 
-        @media (max-width:768px){ .signup-badges{ grid-template-columns:1fr; } .signup-form{ padding:24px 20px; } }
 
-        @media (prefers-reduced-motion: reduce){ .signup-video{ animation:none !important; } }
-      </style>
+        <nav class="f-links">
 
-      <video class="signup-video" autoplay muted loop playsinline preload="auto">
-        <source src="horses.mp4" type="video/mp4" />
-      </video>
+          <a href="#">
+            Политика конфиденциальности
+          </a>
 
-      <div class="signup-wrap">
-        <h2>Записаться на консультацию</h2>
-        <p class="signup-sub">Свяжитесь с нами по телефону: <a href="tel:+79991234567">+7 (999) 123-45-67</a><br>или заполните форму ниже</p>
+          <a href="#">
+            Договор публичной оферты
+          </a>
 
-        <form class="signup-form" onsubmit="return false;">
-          <label><span>Ваше Имя *</span><input type="text" required></label>
-          <label><span>Телефон *</span><input type="tel" required></label>
-          <label><span>Электронная почта</span><input type="email"></label>
-          <label><span>Сообщение *</span><input type="text" required></label>
-          <label class="signup-agree"><input type="checkbox" required><span>Нажимая кнопку «Отправить», Вы подтверждаете, что ознакомились с Политикой конфиденциальности и соглашаетесь с условиями обработки персональных данных</span></label>
-          <button type="submit">Отправить</button>
+          <a href="#">
+            Договор
+          </a>
+
+        </nav>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h3>
+          Записаться на консультацию
+        </h3>
+
+
+        <form
+          class="footer-form"
+          onsubmit="return false;"
+        >
+
+          <label>
+
+            <span>
+              Эл. почта
+            </span>
+
+            <input type="email" />
+
+          </label>
+
+
+          <label>
+
+            <span>
+              Сообщение
+            </span>
+
+            <input type="text" />
+
+          </label>
+
+
+          <label class="f-agree">
+
+            <input type="checkbox" />
+
+            <span>
+              Я согласен на обработку персональных данных
+            </span>
+
+          </label>
+
+
+          <button type="submit">
+            Отправить
+          </button>
+
         </form>
 
-        <p class="signup-years">Более 23 лет практики</p>
-        <div class="signup-badges">
-          <div class="signup-badge"><span class="tick">✓</span>Индивидуальное консультирование</div>
-          <div class="signup-badge"><span class="tick">✓</span>Семейное консультирование</div>
-          <div class="signup-badge"><span class="tick">✓</span>Бизнес консультирование</div>
-        </div>
       </div>
-    </section>
 
-    <footer id="footer" class="footer">
-      <div class="veil-top"></div>
-      <div class="veil-bottom"></div>
-      <style>
-        .footer{ position:relative; width:100%; overflow:hidden; background:url('footer.jpg') center/cover no-repeat; }
-        .footer::before{ content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(233,228,242,.55), rgba(248,225,235,.45)); }
-        .footer-wrap{ position:relative; z-index:4; max-width:1200px; margin:0 auto; padding:70px 24px; display:grid; grid-template-columns:repeat(3,1fr); gap:40px; min-height:700px; align-content:center; }
 
-        .footer-col{ opacity:0; transform: translateY(24px) scale(0.98); animation: cardIn 0.8s ease-out both; }
-        .footer-wrap .footer-col:nth-child(1){ animation-delay:0.08s; }
-        .footer-wrap .footer-col:nth-child(2){ animation-delay:0.18s; }
-        .footer-wrap .footer-col:nth-child(3){ animation-delay:0.28s; }
+    </div>
 
-        .footer-col h3{ font-family:'Nunito',sans-serif; font-weight:900; color:#f48fb8; text-transform:uppercase; font-size:22px; margin:0 0 20px; text-shadow:0 1px 0 #e57ba6,0 2px 0 #d96e9b,0 3px 6px rgba(150,60,110,.18); }
+  </footer>
 
-        .footer-col p, .footer-col li, .footer-col a, .footer-form{ font-family:'Manrope',sans-serif; color:#3a4456; font-size:15px; line-height:1.7; }
-        .footer-col ul{ list-style:none; margin:4px 0 14px; padding:0; }
-        .footer-col li{ padding-left:18px; position:relative; }
-        .footer-col li::before{ content:''; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:50%; background:#f4a6c0; }
-
-        .f-phone a, .f-mail a{ color:#ec6fa0; font-weight:600; text-decoration:none; }
-        .f-area{ font-weight:700; margin:14px 0 4px; }
-        .f-copy{ margin-top:24px; font-size:13px; color:#6a7280; }
-
-        .f-links{ display:flex; flex-direction:column; gap:12px; margin-top:24px; }
-        .f-links a{ color:#ec6fa0; font-weight:600; text-decoration:none; }
-
-        .footer-form{ display:flex; flex-direction:column; gap:14px; background:rgba(255,255,255,.5); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.7); border-radius:20px; padding:24px; }
-        .footer-form label{ display:flex; flex-direction:column; gap:6px; font-weight:600; }
-        .footer-form input[type=email],.footer-form input[type=text]{ background:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.9); border-radius:12px; padding:11px 14px; font-family:'Manrope',sans-serif; font-size:15px; color:#3a4456; outline:none; }
-        .f-agree{ flex-direction:row !important; align-items:flex-start; gap:10px !important; font-weight:500 !important; font-size:13px !important; }
-        .footer-form button{ align-self:flex-start; margin-top:6px; background:linear-gradient(135deg,#f8a5c2,#f48fb8); color:#fff; border:none; border-radius:999px; padding:12px 34px; font-family:'Nunito',sans-serif; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 6px 18px rgba(244,143,184,.4); }
-
-        @media (max-width:768px){ .footer-wrap{ grid-template-columns:1fr; gap:36px; min-height:auto; padding:50px 20px; } }
-
-        @media (prefers-reduced-motion: reduce){ .footer-col{ animation:none !important; transform:none !important; opacity:1 !important; } }
-      </style>
-
-      <div class="footer-wrap">
-        <div class="footer-col">
-          <h3>Обратная связь</h3>
-          <p class="f-phone"><a href="tel:+7 915 261 57 75">+7 915 261 57 75</a></p>
-          <p class="f-mail"><a href="mailto:info@homepsychologist.ru">info@homepsychologist.ru</a></p>
-          <p class="f-area">Работаем в ВАО:</p>
-          <ul><li>Измайлово</li><li>Партизанская</li></ul>
-          <p class="f-area">Консультирование в ЦАО:</p>
-          <ul><li>Новокузнецкая</li><li>Китай-город</li></ul>
-          <p class="f-copy">© 2017–2026 Все права защищены homepsychologist.ru</p>
-        </div>
-
-        <div class="footer-col">
-          <h3>График работы</h3>
-          <p><b>Понедельник – суббота:</b> 9.00–21.00</p>
-          <p><b>Воскресенье:</b> по предварительной записи</p>
-          <nav class="f-links">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Договор публичной оферты</a>
-            <a href="#">Договор</a>
-          </nav>
-        </div>
-
-        <div class="footer-col">
-          <h3>Записаться на консультацию</h3>
-          <form class="footer-form" onsubmit="return false;">
-            <label><span>Эл. почта</span><input type="email"></label>
-            <label><span>Сообщение</span><input type="text"></label>
-            <label class="f-agree"><input type="checkbox"><span>Я согласен на обработку персональных данных</span></label>
-            <button type="submit">Отправить</button>
-          </form>
-        </div>
-      </div>
-    </footer>
-
-  </body>
+</body>
 </html>
