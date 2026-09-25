@@ -1569,17 +1569,11 @@
 
 
     /* =========================================================
-       =========================================================
-          МОБИЛЬНАЯ ВЕРСИЯ
-          DESKTOP ВЫШЕ НЕ МЕНЯЕТСЯ
-       =========================================================
+       МОБИЛЬНАЯ ВЕРСИЯ
+       ОСНОВНЫЕ МОБИЛЬНЫЕ СТИЛИ
        ========================================================= */
 
     @media (max-width: 768px) {
-
-      /* -----------------------------------------------------
-         ОБЩЕЕ
-         ----------------------------------------------------- */
 
       html,
       body {
@@ -1592,6 +1586,7 @@
       body {
         margin: 0;
         padding: 0;
+        overflow-y: auto;
       }
 
       section,
@@ -1631,7 +1626,7 @@
         gap: 8px;
 
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: center;
 
         overflow: hidden;
@@ -2420,726 +2415,1104 @@
 
 
     /* =========================================================
-       =========================================================
-          НОВАЯ АНИМАЦИЯ БЛОКОВ 2–4
-          ПЕРВЫЙ БЛОК НЕ ТРОГАЕМ
-       =========================================================
+       ФИНАЛЬНЫЙ МОБИЛЬНЫЙ FIX
+       ЭТОТ БЛОК ПЕРЕОПРЕДЕЛЯЕТ ТОЛЬКО ТЕЛЕФОН
        ========================================================= */
 
-    /* ---------------------------------------------------------
-       БЛОК 2 — НАША ПОМОЩЬ
-       --------------------------------------------------------- */
+    @media screen and (max-width: 768px) {
 
-    .services .services-head h2,
-    .services .services-head p,
-    .services .glass-kb,
-    .services .glass-kb .k {
-      opacity: 0;
-      filter: blur(6px);
-    }
+      html {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
 
-    .services .services-head h2 {
-      transform: translateY(35px) scale(0.96);
-    }
-
-    .services .services-head p {
-      transform: translateY(25px);
-    }
-
-    /*
-      Панель не получает transform здесь,
-      потому что на мобильном у неё уже есть
-      transform: none !important.
-      Поэтому для панели используем красивое
-      появление через opacity + blur.
-    */
-    .services .glass-kb {
-      filter: blur(8px);
-    }
-
-    .services .glass-kb .k {
-      transform: translateY(25px) scale(0.90);
-    }
-
-    .services.is-visible .services-head h2 {
-      animation:
-        block2Title
-        0.75s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.05s
-        forwards;
-    }
-
-    .services.is-visible .services-head p {
-      animation:
-        block2Text
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.2s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb {
-      animation:
-        block2Panel
-        0.8s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.35s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(1) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.45s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(2) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.55s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(3) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.65s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(4) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.75s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(5) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.85s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(6) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.95s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(7) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        1.05s
-        forwards;
-    }
-
-    .services.is-visible .glass-kb .k:nth-child(8) {
-      animation:
-        serviceCardIn
-        0.55s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        1.15s
-        forwards;
-    }
-
-
-    /* ---------------------------------------------------------
-       БЛОК 3 — КОГДА МОЖНО ОБРАТИТЬСЯ
-       --------------------------------------------------------- */
-
-    .when .when-wrap {
-      opacity: 0;
-      transform: translateY(35px);
-      filter: blur(7px);
-    }
-
-    .when .when-wrap h2 {
-      opacity: 0;
-      transform: translateY(30px) scale(0.96);
-    }
-
-    .when .when-intro {
-      opacity: 0;
-      transform: translateY(25px);
-      filter: blur(5px);
-    }
-
-    .when .when-cards {
-      opacity: 0;
-      transform: translateY(25px);
-      filter: blur(5px);
-    }
-
-    .when .when-card {
-      opacity: 0;
-      transform: translateY(45px) scale(0.94);
-      filter: blur(6px);
-    }
-
-    .when.is-visible .when-wrap {
-      animation:
-        whenWrapIn
-        0.8s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        forwards;
-    }
-
-    .when.is-visible .when-wrap h2 {
-      animation:
-        whenTitleIn
-        0.75s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.05s
-        forwards;
-    }
-
-    .when.is-visible .when-intro {
-      animation:
-        whenIntroIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.25s
-        forwards;
-    }
-
-    .when.is-visible .when-cards {
-      animation:
-        whenCardsWrapIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.4s
-        forwards;
-    }
-
-    .when.is-visible .when-card:nth-child(1) {
-      animation:
-        whenCardIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.55s
-        forwards;
-    }
-
-    .when.is-visible .when-card:nth-child(2) {
-      animation:
-        whenCardIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.75s
-        forwards;
-    }
-
-    .when.is-visible .when-card:nth-child(3) {
-      animation:
-        whenCardIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.95s
-        forwards;
-    }
-
-    .when.is-visible .when-card li {
-      opacity: 0;
-      transform: translateX(-12px);
-    }
-
-    .when.is-visible .when-card:nth-child(1) li,
-    .when.is-visible .when-card:nth-child(2) li,
-    .when.is-visible .when-card:nth-child(3) li {
-      animation:
-        whenListIn
-        0.45s
-        ease
-        forwards;
-    }
-
-    .when.is-visible .when-card:nth-child(1) li:nth-child(1),
-    .when.is-visible .when-card:nth-child(2) li:nth-child(1),
-    .when.is-visible .when-card:nth-child(3) li:nth-child(1) {
-      animation-delay: 1.05s;
-    }
-
-    .when.is-visible .when-card:nth-child(1) li:nth-child(2),
-    .when.is-visible .when-card:nth-child(2) li:nth-child(2),
-    .when.is-visible .when-card:nth-child(3) li:nth-child(2) {
-      animation-delay: 1.15s;
-    }
-
-    .when.is-visible .when-card:nth-child(1) li:nth-child(3),
-    .when.is-visible .when-card:nth-child(2) li:nth-child(3),
-    .when.is-visible .when-card:nth-child(3) li:nth-child(3) {
-      animation-delay: 1.25s;
-    }
-
-    .when.is-visible .when-card:nth-child(1) li:nth-child(4),
-    .when.is-visible .when-card:nth-child(2) li:nth-child(4),
-    .when.is-visible .when-card:nth-child(3) li:nth-child(4) {
-      animation-delay: 1.35s;
-    }
-
-    .when.is-visible .when-card:nth-child(1) li:nth-child(5) {
-      animation-delay: 1.45s;
-    }
-
-
-    /* ---------------------------------------------------------
-       БЛОК 4 — ЗАПИСАТЬСЯ
-       --------------------------------------------------------- */
-
-    .signup .signup-wrap > h2,
-    .signup .signup-sub,
-    .signup .signup-form,
-    .signup .signup-years,
-    .signup .signup-badge {
-      opacity: 0;
-      transform: translateY(40px) scale(0.97);
-      filter: blur(6px);
-    }
-
-    .signup.is-visible .signup-wrap > h2 {
-      animation:
-        signupTitleIn
-        0.8s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.05s
-        forwards;
-    }
-
-    .signup.is-visible .signup-sub {
-      animation:
-        signupSubIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.25s
-        forwards;
-    }
-
-    .signup.is-visible .signup-form {
-      animation:
-        signupFormIn
-        0.85s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.4s
-        forwards;
-    }
-
-    .signup.is-visible .signup-years {
-      animation:
-        signupYearsIn
-        0.7s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.55s
-        forwards;
-    }
-
-    .signup.is-visible .signup-badge:nth-child(1) {
-      animation:
-        signupBadgeIn
-        0.6s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.7s
-        forwards;
-    }
-
-    .signup.is-visible .signup-badge:nth-child(2) {
-      animation:
-        signupBadgeIn
-        0.6s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.82s
-        forwards;
-    }
-
-    .signup.is-visible .signup-badge:nth-child(3) {
-      animation:
-        signupBadgeIn
-        0.6s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        0.94s
-        forwards;
-    }
-
-
-    /* =========================================================
-       KEYFRAMES — БЛОК 2
-       ========================================================= */
-
-    @keyframes block2Title {
-      from {
-        opacity: 0;
-        transform: translateY(35px) scale(0.94);
-        filter: blur(7px);
+        /*
+          На мобильном отключаем snap.
+          Иначе браузер может перескакивать между секциями.
+        */
+        scroll-snap-type: none !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+      body {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
 
-    @keyframes block2Text {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-        filter: blur(5px);
+        margin: 0;
+        padding: 0;
+
+        overflow-x: hidden;
+        overflow-y: visible;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes block2Panel {
-      from {
-        opacity: 0;
-        filter: blur(8px);
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
 
-      to {
-        opacity: 1;
-        filter: blur(0);
-      }
-    }
 
-    @keyframes serviceCardIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px) scale(0.9);
-        filter: blur(5px);
-      }
+      /* =====================================================
+         MOBILE TOPBAR
+         ===================================================== */
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+      .topbar {
+        position: fixed !important;
 
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
 
-    /* =========================================================
-       KEYFRAMES — БЛОК 3
-       ========================================================= */
+        width: 100% !important;
+        max-width: 100% !important;
 
-    @keyframes whenWrapIn {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-        filter: blur(7px);
-      }
+        min-height: 0 !important;
+        height: auto !important;
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
+        padding:
+          7px
+          12px
+          6px !important;
 
-    @keyframes whenTitleIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
+        display: flex !important;
+        flex-wrap: wrap !important;
+
+        align-items: center !important;
+
+        gap:
+          4px
+          8px !important;
+
+        overflow: visible !important;
+
+        z-index: 9999 !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+      .topbar-left {
+        min-width: 0 !important;
 
-    @keyframes whenIntroIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-        filter: blur(5px);
+        flex: 1 1 auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        gap: 7px !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
+      .topbar-logo {
+        width: 36px !important;
+        height: 36px !important;
 
-    @keyframes whenCardsWrapIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-        filter: blur(5px);
+        min-width: 36px !important;
+
+        flex: 0 0 36px !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
+      .topbar-left .brand-sub {
+        font-size: 6.5px !important;
 
-    @keyframes whenCardIn {
-      from {
-        opacity: 0;
-        transform: translateY(45px) scale(0.94);
-        filter: blur(6px);
+        line-height: 1 !important;
+
+        letter-spacing: 0.07em !important;
+
+        white-space: nowrap !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+      .topbar-left .brand-name {
+        font-size: 13px !important;
 
-    @keyframes whenListIn {
-      from {
-        opacity: 0;
-        transform: translateX(-12px);
+        line-height: 1.1 !important;
+
+        white-space: nowrap !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+      .topbar-right {
+        flex: 0 0 auto !important;
 
-
-    /* =========================================================
-       KEYFRAMES — БЛОК 4
-       ========================================================= */
-
-    @keyframes signupTitleIn {
-      from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.94);
-        filter: blur(7px);
+        min-width: 0 !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+      .topbar-phone {
+        display: block !important;
 
-    @keyframes signupSubIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-        filter: blur(5px);
+        font-size: 9px !important;
+
+        line-height: 1.1 !important;
+
+        white-space: nowrap !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
+      .topbar-center {
+        order: 3 !important;
 
-    @keyframes signupFormIn {
-      from {
-        opacity: 0;
-        transform: translateY(45px) scale(0.95);
-        filter: blur(7px);
-      }
+        display: flex !important;
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+        width: 100% !important;
+        flex: 0 0 100% !important;
 
-    @keyframes signupYearsIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-        filter: blur(5px);
-      }
+        margin: 0 !important;
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
+        gap: 18px !important;
 
-    @keyframes signupBadgeIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px) scale(0.94);
-        filter: blur(5px);
+        justify-content: flex-start !important;
+
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+
+        padding:
+          4px
+          0
+          2px !important;
+
+        -webkit-overflow-scrolling: touch !important;
+
+        scrollbar-width: none !important;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-
-    /* =========================================================
-       МОБИЛЬНАЯ АНИМАЦИЯ 2–4
-       ========================================================= */
-
-    @media (max-width: 768px) {
-
-      .services.is-visible .services-head h2 {
-        animation-duration: 0.7s;
+      .topbar-center::-webkit-scrollbar {
+        display: none !important;
       }
 
-      .services.is-visible .services-head p {
-        animation-duration: 0.65s;
+      .topbar-center a {
+        flex: 0 0 auto !important;
+
+        font-size: 10px !important;
+
+        font-weight: 700 !important;
+
+        white-space: nowrap !important;
       }
 
-      .services.is-visible .glass-kb {
-        animation-duration: 0.7s;
+
+      /* =====================================================
+         ANCHORS
+         ===================================================== */
+
+      #hero,
+      #about,
+      #services,
+      #when,
+      #signup,
+      #footer {
+        scroll-margin-top: 105px !important;
       }
 
-      .services.is-visible .glass-kb .k {
-        animation-duration: 0.5s;
+
+      /* =====================================================
+         HERO
+         ===================================================== */
+
+      .hero-section {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        min-height: 100svh !important;
+
+        height: auto !important;
+
+        overflow: hidden !important;
+
+        display: block !important;
+
+        isolation: isolate !important;
       }
 
-      .when.is-visible .when-wrap {
-        animation-duration: 0.7s;
+      .hero-inner {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        min-height: 100svh !important;
+
+        height: auto !important;
+
+        margin: 0 !important;
+
+        padding:
+          105px
+          16px
+          45px !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        z-index: 4 !important;
       }
 
-      .when.is-visible .when-card {
-        animation-duration: 0.65s;
+      .hero-section .hero-inner > header {
+        display: none !important;
       }
 
-      .signup.is-visible .signup-form {
-        animation-duration: 0.75s;
+      .hero-section .hero-inner main {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        min-height: 0 !important;
+
+        padding:
+          30px
+          0
+          30px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 1 1 auto !important;
       }
 
-      /*
-        На мобильном карточки появляются немного быстрее,
-        чтобы вся последовательность была полностью видна
-        и не растягивалась слишком надолго.
-      */
-
-      .services.is-visible .glass-kb .k:nth-child(1) {
-        animation-delay: 0.45s;
+      .hero-section .hero-inner main > div {
+        width: 100% !important;
+        max-width: 100% !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(2) {
-        animation-delay: 0.53s;
+      .hero-section .hero-inner p.mb-5 {
+        display: inline-block !important;
+
+        width: auto !important;
+        max-width: 100% !important;
+
+        margin:
+          0
+          auto
+          18px !important;
+
+        padding:
+          7px
+          11px !important;
+
+        font-size: 8px !important;
+
+        line-height: 1.4 !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(3) {
-        animation-delay: 0.61s;
+      .hero-section .brand-display {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        font-size:
+          clamp(42px, 14vw, 68px) !important;
+
+        line-height: 0.9 !important;
+
+        overflow-wrap: normal !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(4) {
-        animation-delay: 0.69s;
+      .hero-section .brand-line {
+        width: 100% !important;
+        max-width: 100% !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(5) {
-        animation-delay: 0.77s;
+      .hero-section .hero-inner .max-w-2xl {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        padding:
+          0
+          4px !important;
+
+        font-size: 14px !important;
+
+        line-height: 1.55 !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(6) {
-        animation-delay: 0.85s;
+      .hero-section .hero-inner main .mt-10 {
+        margin-top: 28px !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(7) {
-        animation-delay: 0.93s;
+      .hero-section .hero-inner main a {
+        width: 100% !important;
+        max-width: 270px !important;
+
+        padding:
+          12px
+          20px !important;
+
+        font-size: 12px !important;
       }
 
-      .services.is-visible .glass-kb .k:nth-child(8) {
-        animation-delay: 1.01s;
-      }
+      .hero-section .video-bg {
+        position: absolute !important;
 
-      .when.is-visible .when-card:nth-child(1) {
-        animation-delay: 0.5s;
-      }
+        inset: 0 !important;
 
-      .when.is-visible .when-card:nth-child(2) {
-        animation-delay: 0.7s;
-      }
+        width: 100% !important;
+        height: 100% !important;
 
-      .when.is-visible .when-card:nth-child(3) {
-        animation-delay: 0.9s;
-      }
+        max-width: none !important;
 
-      .when.is-visible .when-card li {
-        animation-delay: 0.1s;
-      }
+        display: block !important;
 
-      .signup.is-visible .signup-wrap > h2 {
-        animation-delay: 0.05s;
-      }
+        object-fit: cover !important;
 
-      .signup.is-visible .signup-sub {
-        animation-delay: 0.22s;
-      }
+        object-position: center center !important;
 
-      .signup.is-visible .signup-form {
-        animation-delay: 0.38s;
-      }
-
-      .signup.is-visible .signup-years {
-        animation-delay: 0.52s;
-      }
-
-      .signup.is-visible .signup-badge:nth-child(1) {
-        animation-delay: 0.65s;
-      }
-
-      .signup.is-visible .signup-badge:nth-child(2) {
-        animation-delay: 0.76s;
-      }
-
-      .signup.is-visible .signup-badge:nth-child(3) {
-        animation-delay: 0.87s;
-      }
-    }
-
-
-    /* =========================================================
-       REDUCED MOTION ДЛЯ НОВОЙ АНИМАЦИИ
-       ========================================================= */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .services .services-head h2,
-      .services .services-head p,
-      .services .glass-kb,
-      .services .glass-kb .k,
-      .when .when-wrap,
-      .when .when-wrap h2,
-      .when .when-intro,
-      .when .when-cards,
-      .when .when-card,
-      .when .when-card li,
-      .signup .signup-wrap > h2,
-      .signup .signup-sub,
-      .signup .signup-form,
-      .signup .signup-years,
-      .signup .signup-badge {
-        opacity: 1 !important;
         transform: none !important;
-        filter: none !important;
+
+        z-index: 0 !important;
+
+        pointer-events: none !important;
+      }
+
+      .hero-overlay {
+        z-index: 1 !important;
+      }
+
+      .hero-glow {
+        z-index: 2 !important;
+      }
+
+
+      /* =====================================================
+         ABOUT
+         ===================================================== */
+
+      .about {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+
+        margin: 0 !important;
+
+        padding:
+          70px
+          16px
+          80px !important;
+
+        overflow: hidden !important;
+
+        isolation: isolate !important;
+      }
+
+      .about-bg {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        display: block !important;
+
+        object-fit: cover !important;
+
+        object-position: center center !important;
+
+        transform: none !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+      }
+
+      .about-wrap {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+
+        z-index: 4 !important;
+      }
+
+      .about h2 {
+        width: 100% !important;
+
+        margin:
+          0
+          0
+          30px !important;
+
+        font-size:
+          clamp(28px, 9vw, 40px) !important;
+
+        line-height: 1.05 !important;
+      }
+
+      .about-cols {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 16px !important;
+      }
+
+      .about-card {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        padding:
+          24px
+          18px !important;
+
+        border-radius: 20px !important;
+
+        transform: none !important;
+      }
+
+      .about-card:hover {
+        transform: none !important;
+      }
+
+      .about-card h3 {
+        width: 100% !important;
+
+        margin-bottom: 15px !important;
+
+        padding:
+          11px
+          10px !important;
+
+        font-size: 14px !important;
+
+        line-height: 1.2 !important;
+      }
+
+      .about-card p,
+      .about-card li {
+        font-size: 14px !important;
+
+        line-height: 1.6 !important;
+      }
+
+
+      /* =====================================================
+         SERVICES
+         ===================================================== */
+
+      .services {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        min-height: 100svh !important;
+
+        height: auto !important;
+
+        margin: 0 !important;
+
+        overflow: hidden !important;
+
+        display: block !important;
+
+        isolation: isolate !important;
+      }
+
+      .services-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        display: block !important;
+
+        object-fit: cover !important;
+
+        object-position: center center !important;
+
+        transform: none !important;
+
         animation: none !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+      }
+
+      .services-head {
+        position: relative !important;
+
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+
+        width: 100% !important;
+
+        padding:
+          70px
+          16px
+          0 !important;
+
+        z-index: 4 !important;
+      }
+
+      .services-head h2 {
+        font-size:
+          clamp(28px, 9vw, 40px) !important;
+
+        line-height: 1.05 !important;
+      }
+
+      .services-head p {
+        font-size: 15px !important;
+
+        line-height: 1.4 !important;
+
+        margin-top: 8px !important;
+      }
+
+      .services-badge {
+        top: 14px !important;
+
+        right: 12px !important;
+
+        padding:
+          8px
+          13px !important;
+
+        font-size: 11px !important;
+
+        z-index: 5 !important;
+      }
+
+      .glass-kb {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+
+        width: calc(100% - 32px) !important;
+
+        max-width: none !important;
+
+        margin:
+          30px
+          16px
+          45px !important;
+
+        padding: 11px !important;
+
+        transform: none !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 9px !important;
+
+        border-radius: 20px !important;
+
+        z-index: 4 !important;
+      }
+
+      .kb-row {
+        display: grid !important;
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+
+        width: 100% !important;
+
+        padding: 0 !important;
+      }
+
+      .k {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        min-height: 70px !important;
+
+        padding:
+          9px
+          6px !important;
+
+        font-size: 10px !important;
+
+        line-height: 1.25 !important;
+
+        border-radius: 12px !important;
+
+        overflow-wrap: break-word !important;
+
+        word-break: normal !important;
+      }
+
+
+      /* =====================================================
+         WHEN
+         ===================================================== */
+
+      .when {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        margin: 0 !important;
+
+        overflow: hidden !important;
+
+        isolation: isolate !important;
+      }
+
+      .when-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        display: block !important;
+
+        object-fit: cover !important;
+
+        object-position: center center !important;
+
+        transform: none !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+      }
+
+      .when-wrap {
+        position: relative !important;
+
+        width: auto !important;
+
+        max-width: none !important;
+
+        margin:
+          0
+          16px !important;
+
+        padding:
+          65px
+          18px
+          22px !important;
+
+        border-radius: 22px !important;
+
+        background:
+          rgba(248, 243, 238, 0.6) !important;
+
+        backdrop-filter: blur(8px) !important;
+
+        -webkit-backdrop-filter: blur(8px) !important;
+
+        z-index: 4 !important;
+      }
+
+      .when h2 {
+        font-size:
+          clamp(27px, 8vw, 38px) !important;
+
+        line-height: 1.05 !important;
+
+        margin-bottom: 20px !important;
+      }
+
+      .when-intro {
+        width: 100% !important;
+
+        margin:
+          0
+          0
+          10px !important;
+
+        padding: 17px !important;
+
+        font-size: 14px !important;
+
+        line-height: 1.6 !important;
+
+        text-align: left !important;
+      }
+
+      .when-cards {
+        position: relative !important;
+
+        width: auto !important;
+
+        max-width: none !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 14px !important;
+
+        margin:
+          0
+          16px
+          40px !important;
+
+        padding: 0 !important;
+
+        z-index: 4 !important;
+      }
+
+      .when-card {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        padding:
+          20px
+          17px !important;
+
+        border-radius: 20px !important;
+      }
+
+      .when-card h3 {
+        font-size: 17px !important;
+
+        line-height: 1.2 !important;
+      }
+
+      .when-card li {
+        font-size: 14px !important;
+
+        line-height: 1.5 !important;
+
+        padding-left: 20px !important;
+      }
+
+
+      /* =====================================================
+         SIGNUP
+         ===================================================== */
+
+      .signup {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        margin: 0 !important;
+
+        overflow: hidden !important;
+
+        isolation: isolate !important;
+      }
+
+      .signup-video {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        max-width: none !important;
+
+        display: block !important;
+
+        object-fit: cover !important;
+
+        object-position: center center !important;
+
+        transform: none !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+      }
+
+      .signup-wrap {
+        position: relative !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        margin: 0 !important;
+
+        padding:
+          65px
+          16px
+          70px !important;
+
+        z-index: 4 !important;
+      }
+
+      .signup h2 {
+        font-size:
+          clamp(27px, 8vw, 38px) !important;
+
+        line-height: 1.1 !important;
+      }
+
+      .signup-sub {
+        font-size: 15px !important;
+
+        line-height: 1.5 !important;
+      }
+
+      .signup-form {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding:
+          22px
+          16px !important;
+
+        border-radius: 20px !important;
+      }
+
+      .signup-form label {
+        width: 100% !important;
+
+        min-width: 0 !important;
+      }
+
+      .signup-form input[type='text'],
+      .signup-form input[type='tel'],
+      .signup-form input[type='email'] {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        font-size: 16px !important;
+      }
+
+      .signup-agree {
+        font-size: 11px !important;
+
+        line-height: 1.45 !important;
+      }
+
+      .signup-form button {
+        width: auto !important;
+
+        max-width: 100% !important;
+
+        padding:
+          13px
+          30px !important;
+      }
+
+      .signup-badges {
+        width: 100% !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 12px !important;
+      }
+
+      .signup-badge {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        font-size: 13px !important;
+
+        padding: 16px !important;
+      }
+
+
+      /* =====================================================
+         FOOTER
+         ===================================================== */
+
+      .footer {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        margin: 0 !important;
+
+        overflow: hidden !important;
+
+        isolation: isolate !important;
+      }
+
+      .footer-wrap {
+        position: relative !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-height: 0 !important;
+
+        margin: 0 !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 30px !important;
+
+        padding:
+          50px
+          16px !important;
+
+        z-index: 4 !important;
+      }
+
+      .footer-col {
+        width: 100% !important;
+
+        min-width: 0 !important;
+      }
+
+      .footer-col h3 {
+        font-size: 20px !important;
+      }
+
+      .footer-col p,
+      .footer-col li,
+      .footer-col a,
+      .footer-form {
+        font-size: 14px !important;
+      }
+
+      .footer-form {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding:
+          20px
+          16px !important;
+      }
+
+      .footer-form input[type='email'],
+      .footer-form input[type='text'] {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        font-size: 16px !important;
+      }
+
+      .footer-form button {
+        max-width: 100% !important;
+      }
+
+
+      /* =====================================================
+         VEILS
+         ===================================================== */
+
+      .veil-top,
+      .veil-bottom {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        pointer-events: none !important;
+      }
+
+
+      /* =====================================================
+         FLOATING ELEMENTS
+         ===================================================== */
+
+      .floating-orb {
+        max-width: none !important;
+
+        pointer-events: none !important;
+      }
+
+      .floating-orb.left-\[12\%\] {
+        left: -80px !important;
+      }
+
+      .floating-orb.delay {
+        right: -100px !important;
+      }
+
+
+      /* =====================================================
+         VIDEO SAFETY
+         ===================================================== */
+
+      .hero-section > video,
+      .about > video,
+      .services > video,
+      .when > video,
+      .signup > video {
+        pointer-events: none !important;
+      }
+
+
+      /* =====================================================
+         МОБИЛЬНЫЕ АНИМАЦИИ
+         ===================================================== */
+
+      .services-video,
+      .when-video,
+      .signup-video {
+        animation: none !important;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION — MOBILE
+       ========================================================= */
+
+    @media screen and (max-width: 768px) and (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto !important;
+      }
+
+      .floating-orb,
+      .services-video,
+      .when-video,
+      .signup-video {
+        animation: none !important;
+      }
+
+      .about h2,
+      .about-card,
+      .about-card li,
+      .about-card h3,
+      .when h2,
+      .footer-col {
+        animation: none !important;
+
+        opacity: 1 !important;
+
+        transform: none !important;
+
+        filter: none !important;
       }
     }
 
@@ -4152,51 +4525,6 @@
     </div>
 
   </footer>
-
-
-  <!-- =====================================================
-       SCROLL АНИМАЦИЯ БЛОКОВ 2–4
-       ===================================================== -->
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-      const animatedSections = document.querySelectorAll(
-        '.services, .when, .signup'
-      );
-
-      if (!animatedSections.length) {
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        function (entries, observer) {
-
-          entries.forEach(function (entry) {
-
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            entry.target.classList.add('is-visible');
-
-            observer.unobserve(entry.target);
-
-          });
-
-        },
-        {
-          threshold: 0.15,
-          rootMargin: '0px 0px -8% 0px'
-        }
-      );
-
-      animatedSections.forEach(function (section) {
-        observer.observe(section);
-      });
-
-    });
-  </script>
 
 </body>
 </html>
