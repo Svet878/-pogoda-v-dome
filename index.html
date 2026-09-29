@@ -1017,6 +1017,13 @@
        Действует ТОЛЬКО на экранах до 768px. Десктоп не затрагивается.
        ========================================================= */
     @media (max-width: 768px) {
+      /* Видео в блоках 2–5 показывается баннером 16:9 на всю ширину экрана.
+         Если у ваших видео другие пропорции, поменяйте обе строки ниже. */
+      :root {
+        --banner-ratio: 16 / 9;
+        --banner-h: 56.25vw;
+      }
+ 
       html, body {
         width: 100%;
         max-width: 100%;
@@ -1148,28 +1155,39 @@
         width: 100% !important;
         height: auto !important;
         max-width: 100% !important;
-        aspect-ratio: auto 16 / 9;
-        object-fit: contain !important;
+        aspect-ratio: var(--banner-ratio);
+        object-fit: cover !important;   /* заполняет рамку целиком — никаких боковых полос */
         transform: none !important;
         animation: none !important;
         z-index: 0 !important;
-        -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-        mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
       }
  
       /* белая пелена поверх видео на телефоне не нужна */
       .when::after,
       .signup::after { display: none; }
  
-      /* Карточки чуть заметнее на спокойном фоне */
-      .about-card,
-      .when-intro,
-      .when-card,
-      .signup-form,
-      .signup-badge {
-        background: rgba(255, 255, 255, 0.62);
-        box-shadow: 0 8px 22px rgba(160, 120, 170, 0.16);
+      /* Плавный переход от видео к фону блока */
+      .about::before,
+      .services::before,
+      .when::before,
+      .signup::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(var(--banner-h) - 48px);
+        height: 48px;
+        z-index: 1;
+        pointer-events: none;
       }
+      .about::before   { background: linear-gradient(to bottom, rgba(251, 228, 238, 0), #fbe4ee); }
+      .services::before { background: linear-gradient(to bottom, rgba(207, 229, 242, 0), #cfe5f2); }
+      .when::before    { background: linear-gradient(to bottom, rgba(251, 230, 238, 0), #fbe6ee); }
+      .signup::before  { background: linear-gradient(to bottom, rgba(232, 222, 244, 0), #e8def4); }
+ 
+      /* СТЕКЛЯННЫЕ ПЛАШКИ: стили карточек здесь не переопределяются —
+         они полупрозрачные с размытием, как на компьютере.
+         Чтобы стекло было видно, за плашками лежат цветные «подсветки» (см. фон блоков ниже). */
  
       /* ABOUT MOBILE */
       .about {
@@ -1177,7 +1195,12 @@
         max-width: 100%;
         padding: 0 0 56px;
         overflow: hidden;
-        background: linear-gradient(180deg, #fbe4ee 0%, #f7eaf2 55%, #f2e8f3 100%);
+        background:
+          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 230px), rgba(244, 143, 184, 0.45), rgba(244, 143, 184, 0)),
+          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 470px), rgba(186, 164, 240, 0.45), rgba(186, 164, 240, 0)),
+          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 700px), rgba(255, 196, 150, 0.45), rgba(255, 196, 150, 0)),
+          radial-gradient(circle 200px at 90% calc(var(--banner-h) + 940px), rgba(150, 200, 240, 0.45), rgba(150, 200, 240, 0)),
+          linear-gradient(180deg, #fbe4ee 0%, #f7eaf2 55%, #f2e8f3 100%);
       }
  
       .about-wrap { width: 100%; max-width: 100%; margin: 0; padding: 6px 12px 0; }
@@ -1217,7 +1240,11 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        background: linear-gradient(180deg, #cfe5f2 0%, #dbeaf3 55%, #e7eff5 100%);
+        background:
+          radial-gradient(circle 200px at 10% calc(var(--banner-h) + 260px), rgba(244, 143, 184, 0.45), rgba(244, 143, 184, 0)),
+          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 420px), rgba(186, 164, 240, 0.45), rgba(186, 164, 240, 0)),
+          radial-gradient(circle 200px at 10% calc(var(--banner-h) + 600px), rgba(150, 225, 200, 0.45), rgba(150, 225, 200, 0)),
+          linear-gradient(180deg, #cfe5f2 0%, #dbeaf3 55%, #e7eff5 100%);
       }
  
       .services-video { order: -1; }
@@ -1273,7 +1300,12 @@
         width: 100%;
         max-width: 100%;
         overflow: hidden;
-        background: linear-gradient(180deg, #fbe6ee 0%, #f8ece9 55%, #f3ecef 100%);
+        background:
+          radial-gradient(circle 200px at 90% calc(var(--banner-h) + 250px), rgba(244, 143, 184, 0.45), rgba(244, 143, 184, 0)),
+          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 560px), rgba(186, 164, 240, 0.45), rgba(186, 164, 240, 0)),
+          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 900px), rgba(255, 196, 150, 0.45), rgba(255, 196, 150, 0)),
+          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 1240px), rgba(150, 200, 240, 0.45), rgba(150, 200, 240, 0)),
+          linear-gradient(180deg, #fbe6ee 0%, #f8ece9 55%, #f3ecef 100%);
       }
  
       .when-wrap {
@@ -1316,7 +1348,12 @@
         width: 100%;
         max-width: 100%;
         overflow: hidden;
-        background: linear-gradient(180deg, #e8def4 0%, #f0e7f6 55%, #f7e9f1 100%);
+        background:
+          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 250px), rgba(244, 143, 184, 0.45), rgba(244, 143, 184, 0)),
+          radial-gradient(circle 200px at 6% calc(var(--banner-h) + 520px), rgba(150, 200, 240, 0.45), rgba(150, 200, 240, 0)),
+          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 820px), rgba(186, 164, 240, 0.45), rgba(186, 164, 240, 0)),
+          radial-gradient(circle 200px at 10% calc(var(--banner-h) + 1080px), rgba(255, 196, 150, 0.45), rgba(255, 196, 150, 0)),
+          linear-gradient(180deg, #e8def4 0%, #f0e7f6 55%, #f7e9f1 100%);
       }
  
       .signup-wrap { width: 100%; max-width: 100%; padding: 18px 12px 50px; }
@@ -1376,10 +1413,9 @@
       /* VEILS MOBILE */
       .veil-top, .veil-bottom { height: 20px !important; }
  
-      /* FLOATING ELEMENTS */
-      .floating-orb { max-width: none; pointer-events: none; }
-      .floating-orb.left-\[12\%\] { left: -80px; }
-      .floating-orb.delay { right: -100px; }
+      /* Размытые анимированные круги в шапке сильно грузят телефон — на мобильном скрыты */
+      .floating-orb,
+      .hero-glow { display: none !important; }
     }
   </style>
 </head>
@@ -1712,8 +1748,77 @@
     </div>
   </footer>
  
+  <!-- МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ВИДЕО.
+       Работает ТОЛЬКО на телефонах (экран до 768px). На компьютере скрипт сразу выходит и ничего не меняет. -->
+  <script>
+    (function () {
+      if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+ 
+      var noop = function () {};
+      var videos = Array.prototype.slice.call(document.querySelectorAll('video'));
+ 
+      // выключить видео: остановить загрузку и освободить память
+      function stop(v) {
+        try { v.pause(); } catch (e) {}
+        v.removeAttribute('src');
+        v.load();
+        v._on = false;
+      }
+ 
+      // включить видео: загрузить и запустить
+      function start(v) {
+        if (v._on || !v._src) return;
+        v._on = true;
+        v.muted = true;
+        v.src = v._src;
+        var p = v.play();
+        if (p && p.catch) p.catch(noop);
+      }
+ 
+      videos.forEach(function (v) {
+        var s = v.querySelector('source');
+        v._src = (s && s.getAttribute('src')) || v.getAttribute('src');
+        if (s) s.parentNode.removeChild(s);
+        v.removeAttribute('autoplay');
+        v.setAttribute('preload', 'none');
+        v.setAttribute('playsinline', '');
+        v.muted = true;
+        v._fails = 0;
+        stop(v);
+ 
+        // если видео «отвалилось» с ошибкой — пробуем запустить заново (до 3 раз)
+        v.addEventListener('error', function () {
+          if (!v._src || v._fails >= 3) return;
+          v._fails++;
+          setTimeout(function () { if (v._vis) { stop(v); start(v); } }, 1500);
+        });
+      });
+ 
+      // Грузим и играем только то видео, которое на экране или чуть ниже/выше него
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          v._vis = e.isIntersecting;
+          if (e.isIntersecting) start(v); else stop(v);
+        });
+      }, { rootMargin: '250px 0px' });
+      videos.forEach(function (v) { io.observe(v); });
+ 
+      // вернулись в страницу (например, из другого приложения) — оживляем видимые видео
+      function revive() {
+        videos.forEach(function (v) {
+          if (!v._vis) return;
+          if (v.error) { stop(v); start(v); }
+          else if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(noop); }
+        });
+      }
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) revive(); });
+      window.addEventListener('pageshow', revive);
+      // если телефон не дал автозапуск — запускаем при первом касании экрана
+      document.addEventListener('touchstart', revive, { once: true, passive: true });
+    })();
+  </script>
+ 
 </body>
 </html>
- 
-
-
