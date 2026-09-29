@@ -1,3 +1,6 @@
+
+
+Индекс · HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -28,14 +31,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
-
+ 
   <style>
     :root {
       --bg-dark: #120f0e;
       --bg-soft: rgba(255, 255, 255, 0.14);
       --gold: rgba(227, 195, 151, 0.65);
     }
-
+ 
     html, body {
       margin: 0;
       padding: 0;
@@ -43,25 +46,25 @@
       width: 100%;
       max-width: 100%;
     }
-
+ 
     html {
       scroll-behavior: smooth;
       scroll-snap-type: y proximity;
     }
-
+ 
     body {
       font-family: 'Manrope', sans-serif;
       background: #f8f3ee;
     }
-
+ 
     *, *::before, *::after {
       box-sizing: border-box;
     }
-
+ 
     p, span, li, a, button, input, textarea, label {
       font-family: 'Manrope', sans-serif;
     }
-
+ 
     .hero-section {
       width: 100vw !important;
       margin: 0 !important;
@@ -70,7 +73,7 @@
       border-radius: 0;
       background: #f5efe9;
     }
-
+ 
     .hero-inner {
       width: 100%;
       max-width: 1400px;
@@ -78,7 +81,7 @@
       padding: 24px 24px 0;
       box-sizing: border-box;
     }
-
+ 
     .brand-display {
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
@@ -88,7 +91,7 @@
       color: #f48fb8;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
     }
-
+ 
     .brand-name {
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
@@ -99,7 +102,7 @@
       text-transform: none;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 6px rgba(150, 60, 110, 0.22);
     }
-
+ 
     .brand-sub {
       font-size: 10px;
       font-weight: 700;
@@ -107,14 +110,14 @@
       text-transform: uppercase;
       color: #3a3a4a;
     }
-
+ 
     .brand-line {
       display: block;
       width: min(100%, 11ch);
       margin-inline: auto;
       text-align: center;
     }
-
+ 
     .video-bg {
       position: absolute;
       inset: 0;
@@ -125,33 +128,33 @@
       filter: none;
       transform: scale(1.06);
     }
-
+ 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: rgba(255, 255, 255, 0.25);
     }
-
+ 
     .hero-glow {
       background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 22%),
                   radial-gradient(circle at 80% 35%, rgba(214, 224, 229, 0.14), transparent 26%),
                   radial-gradient(circle at 50% 75%, rgba(255, 255, 255, 0.08), transparent 28%);
       filter: blur(18px);
     }
-
+ 
     .floating-orb {
       animation: float 14s ease-in-out infinite alternate;
     }
-
+ 
     .floating-orb.delay {
       animation-delay: 2s;
     }
-
+ 
     @keyframes float {
       0% { transform: translate3d(0, 0, 0) scale(1); }
       100% { transform: translate3d(18px, -16px, 0) scale(1.08); }
     }
-
+ 
     .logo-compass {
       position: relative;
       width: 56px;
@@ -161,7 +164,7 @@
       border: 1px solid rgba(255, 255, 255, 0.45);
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
-
+ 
     .logo-compass::before, .logo-compass::after {
       content: '';
       position: absolute;
@@ -169,19 +172,19 @@
       border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 9999px;
     }
-
+ 
     .logo-compass::after {
       inset: 24px 18px 18px 24px;
       border-color: rgba(255, 255, 255, 0.2);
     }
-
+ 
     .logo-compass svg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
     }
-
+ 
     .mini-bullet {
       width: 0.5rem;
       height: 0.5rem;
@@ -191,24 +194,24 @@
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
       flex-shrink: 0;
     }
-
+ 
     section, footer {
       scroll-snap-align: start;
     }
-
+ 
     .hero, .hero-section { position: relative; z-index: 1; }
     .about { position: relative; z-index: 2; }
     .services { position: relative; z-index: 3; }
     .when { position: relative; z-index: 4; }
     .signup { position: relative; z-index: 5; }
     .footer { position: relative; z-index: 6; }
-
+ 
     .video-bg, .about-bg, .services-video, .when-video, .signup-video { z-index: 0; }
     .video-bg { position: absolute; inset: 0; z-index: 0; }
     .about-bg { position: absolute; inset: 0; z-index: 0; }
     .when-video, .signup-video { z-index: 0; }
     .services-video { z-index: 0; position: relative; }
-
+ 
     .veil-top, .veil-bottom {
       position: absolute;
       left: 0;
@@ -217,21 +220,21 @@
       pointer-events: none;
       z-index: 1;
     }
-
+ 
     .veil-top {
       top: 0;
       background: linear-gradient(to bottom, rgba(250, 246, 249, 0.9), rgba(250, 246, 249, 0));
     }
-
+ 
     .veil-bottom {
       bottom: 0;
       background: linear-gradient(to bottom, rgba(250, 246, 249, 0), rgba(250, 246, 249, 0.9));
     }
-
+ 
     #hero, #about, #services, #when, #signup, #footer {
       scroll-margin-top: 70px;
     }
-
+ 
     /* TOPBAR */
     .topbar {
       position: fixed;
@@ -249,11 +252,11 @@
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.7);
     }
-
+ 
     .topbar-left { display: flex; align-items: center; gap: 12px; }
     .topbar-center { display: flex; gap: 28px; justify-content: center; flex: 1; }
     .topbar-right { display: flex; align-items: center; gap: 12px; }
-
+ 
     .topbar a {
       font-family: 'Manrope', sans-serif;
       font-weight: 600;
@@ -261,21 +264,21 @@
       color: #3a4456;
       text-decoration: none;
     }
-
+ 
     .topbar a:hover { color: #ec6fa0; }
     .topbar .topbar-phone { color: #ec6fa0; font-weight: 700; text-decoration: none; }
-
+ 
     .topbar-logo {
       width: 46px;
       height: 46px;
       filter: drop-shadow(0 2px 3px rgba(214, 116, 157, 0.35));
     }
-
+ 
     .hero-inner, .about-wrap, .services-head, .services-badge, .when-wrap, .signup-wrap, .footer-wrap {
       position: relative;
       z-index: 4;
     }
-
+ 
     .hero-section .hero-inner p.mb-5 {
       background: rgba(255, 255, 255, 0.28);
       backdrop-filter: blur(8px);
@@ -287,29 +290,29 @@
       color: #2e3a4d;
       font-weight: 700;
     }
-
+ 
     .hero-section .hero-inner .max-w-2xl {
       color: #2e3a4d;
       font-weight: 600;
       font-size: 19px;
       text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85);
     }
-
+ 
     footer button {
       box-shadow: 0 5px 0 #e0559a, 0 10px 20px rgba(224, 85, 154, 0.35) !important;
       transition: transform 0.15s, box-shadow 0.15s;
     }
-
+ 
     footer button:hover {
       transform: translateY(2px);
       box-shadow: 0 3px 0 #e0559a, 0 6px 14px rgba(224, 85, 154, 0.3) !important;
     }
-
+ 
     footer button:active {
       transform: translateY(4px);
       box-shadow: 0 1px 0 #e0559a !important;
     }
-
+ 
     /* ABOUT */
     .about {
       position: relative;
@@ -320,7 +323,7 @@
       padding: 110px 24px 150px;
       background: none;
     }
-
+ 
     .about-bg {
       position: absolute;
       inset: 0;
@@ -330,14 +333,14 @@
       transform: scale(1.4);
       z-index: 0;
     }
-
+ 
     .about-wrap {
       position: relative;
       z-index: 4;
       max-width: 1160px;
       margin: 0 auto;
     }
-
+ 
     .about h2 {
       margin: 0 0 58px;
       text-align: center;
@@ -352,14 +355,14 @@
       transform: scale(0.9) translateY(30px);
       animation: titleIn 0.8s ease-out both;
     }
-
+ 
     .about-cols {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
       align-items: stretch;
     }
-
+ 
     .about-card {
       position: relative;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.2));
@@ -375,16 +378,16 @@
       filter: blur(8px);
       animation: cardIn 0.8s ease-out both;
     }
-
+ 
     .about-card:nth-child(1) { animation-delay: 0.15s; }
     .about-card:nth-child(2) { animation-delay: 0.3s; }
     .about-card:nth-child(3) { animation-delay: 0.45s; }
-
+ 
     .about-card:hover {
       transform: scale(1.05) translateY(-6px);
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
     }
-
+ 
     .about-card h3 {
       margin: 0 0 18px;
       padding: 13px 22px;
@@ -403,9 +406,9 @@
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
       transition: transform 0.45s ease;
     }
-
+ 
     .about-card:hover h3 { transform: scale(1.04); }
-
+ 
     .about-card p, .about-card li {
       font-family: 'Manrope', sans-serif;
       font-size: 15.5px;
@@ -413,10 +416,10 @@
       color: #4a4a5a;
       text-shadow: none;
     }
-
+ 
     .about-card p { margin: 0; }
     .about-card ul { list-style: none; margin: 0; padding: 0; }
-
+ 
     .about-card li {
       position: relative;
       margin: 10px 0;
@@ -425,7 +428,7 @@
       animation: listDotReveal 0.4s ease forwards;
       animation-delay: 0.65s;
     }
-
+ 
     .about-card li::before {
       content: '';
       position: absolute;
@@ -436,28 +439,28 @@
       border-radius: 50%;
       background: #f4a6c0;
     }
-
+ 
     @keyframes titleIn {
       from { opacity: 0; transform: scale(0.9) translateY(30px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
-
+ 
     @keyframes cardIn {
       from { opacity: 0; transform: scale(0.82) translateY(40px); filter: blur(8px); }
       to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
     }
-
+ 
     @keyframes listDotReveal {
       0% { opacity: 0; transform: translateY(6px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
+ 
     .video-bg { filter: saturate(1.3) contrast(1.1) !important; }
     .hero-overlay { background: rgba(255, 255, 255, 0.12) !important; opacity: 0.4 !important; }
     .veil-top, .veil-bottom { opacity: 0.5 !important; }
     #hero p { color: #22303f !important; font-weight: 600 !important; }
     #hero a { color: #2e3a4d !important; font-weight: 700 !important; }
-
+ 
     /* SERVICES */
     .services {
       position: relative;
@@ -466,7 +469,7 @@
       margin: 0;
       font-family: 'Manrope', sans-serif;
     }
-
+ 
     .services-video {
       display: block;
       width: 100%;
@@ -474,7 +477,7 @@
       animation: servicesSway 10s ease-in-out infinite;
       transform-origin: 50% 60%;
     }
-
+ 
     .services-badge {
       position: absolute;
       top: 14px;
@@ -492,7 +495,7 @@
       color: #f48fb8;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b;
     }
-
+ 
     .services-head {
       position: absolute;
       top: 36px;
@@ -501,7 +504,7 @@
       text-align: center;
       z-index: 1;
     }
-
+ 
     .services-head h2 {
       margin: 0;
       font-family: 'Nunito', sans-serif;
@@ -512,7 +515,7 @@
       color: #f48fb8;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
     }
-
+ 
     .services-head p {
       margin: 8px 0 0;
       font-family: 'Manrope', sans-serif;
@@ -520,13 +523,13 @@
       font-weight: 600;
       color: #3f4a5a;
     }
-
+ 
     @keyframes servicesSway {
       0% { transform: scale(1.03) rotate(0deg) translateY(0); }
       50% { transform: scale(1.04) rotate(0.3deg) translateY(-5px); }
       100% { transform: scale(1.03) rotate(0deg) translateY(0); }
     }
-
+ 
     .glass-kb {
       position: absolute;
       right: 4%;
@@ -543,10 +546,10 @@
       border: 1px solid rgba(255, 255, 255, 0.65);
       border-radius: 26px;
     }
-
+ 
     .kb-row { display: flex; gap: 12px; justify-content: center; }
     .kb-row:nth-child(2) { padding-left: 30px; }
-
+ 
     .k {
       width: 170px;
       min-height: 92px;
@@ -563,14 +566,14 @@
       cursor: pointer;
       transition: transform 0.15s;
     }
-
+ 
     .k.g {
       background: linear-gradient(180deg, rgba(198, 240, 222, 0.95), rgba(140, 215, 185, 0.55));
       color: #2e5d4b;
     }
-
+ 
     .k:hover { transform: translateY(3px); }
-
+ 
     @media (max-width: 1200px) {
       .glass-kb {
         position: static;
@@ -581,7 +584,7 @@
       }
       .kb-row { flex-wrap: wrap; }
     }
-
+ 
     /* WHEN */
     .when {
       position: relative;
@@ -590,7 +593,7 @@
       background: none;
       font-family: 'Manrope', sans-serif;
     }
-
+ 
     .when::after {
       content: '';
       position: absolute;
@@ -598,7 +601,7 @@
       background: rgba(255, 255, 255, 0.22);
       pointer-events: none;
     }
-
+ 
     .when-video {
       position: absolute;
       inset: 0;
@@ -609,7 +612,7 @@
       transform: scale(1.06);
       filter: brightness(1.18) saturate(1.05);
     }
-
+ 
     .when-wrap {
       position: relative;
       z-index: 4;
@@ -617,7 +620,7 @@
       margin: 0 0 0 5%;
       padding: 90px 0 20px;
     }
-
+ 
     .when h2 {
       margin: 0 0 24px;
       font-family: 'Nunito', sans-serif;
@@ -630,7 +633,7 @@
       transform: translateY(24px) scale(0.98);
       animation: titleIn 0.8s ease-out both;
     }
-
+ 
     .when-intro {
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(14px);
@@ -647,7 +650,7 @@
       text-shadow: none;
       margin: 0 0 18px 0;
     }
-
+ 
     .when-cards {
       position: relative;
       z-index: 2;
@@ -658,7 +661,7 @@
       margin: 28px auto 70px;
       padding: 0 24px;
     }
-
+ 
     .when-card {
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(16px);
@@ -667,7 +670,7 @@
       border-radius: 24px;
       padding: 26px 28px;
     }
-
+ 
     .when-card h3 {
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
@@ -676,9 +679,9 @@
       font-size: 18px;
       margin: 0 0 14px;
     }
-
+ 
     .when-card ul { list-style: none; margin: 0; padding: 0; }
-
+ 
     .when-card li {
       font-family: 'Manrope', sans-serif;
       font-size: 15px;
@@ -689,7 +692,7 @@
       padding-left: 22px;
       position: relative;
     }
-
+ 
     .when-card li::before {
       content: '';
       position: absolute;
@@ -700,14 +703,14 @@
       border-radius: 50%;
       background: #f4a6c0;
     }
-
+ 
     /* SIGNUP */
     .signup {
       position: relative;
       width: 100%;
       overflow: hidden;
     }
-
+ 
     .signup-video {
       position: absolute;
       inset: 0;
@@ -717,7 +720,7 @@
       transform: scale(1.08);
       filter: brightness(1.12) saturate(1.05);
     }
-
+ 
     .signup::after {
       content: '';
       position: absolute;
@@ -725,7 +728,7 @@
       background: rgba(255, 255, 255, 0.18);
       pointer-events: none;
     }
-
+ 
     .signup-wrap {
       position: relative;
       z-index: 4;
@@ -734,7 +737,7 @@
       padding: 80px 24px 90px;
       text-align: center;
     }
-
+ 
     .signup h2 {
       margin: 0 0 12px;
       font-family: 'Nunito', sans-serif;
@@ -744,7 +747,7 @@
       font-size: clamp(28px, 3.5vw, 46px);
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 0 #cc6190, 0 5px 10px rgba(150, 60, 110, 0.22);
     }
-
+ 
     .signup-sub {
       font-family: 'Manrope', sans-serif;
       font-size: 18px;
@@ -753,10 +756,10 @@
       margin: 18px 0 28px;
       text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
     }
-
+ 
     .signup-sub a { color: #ec6fa0; text-decoration: none; font-weight: 700; }
     .signup-sub, .signup-form label, .signup-form label span, .signup-agree, .signup-agree span, .signup-badge { font-family: 'Manrope', sans-serif; }
-
+ 
     .signup-form {
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(16px);
@@ -769,7 +772,7 @@
       gap: 16px;
       text-align: left;
     }
-
+ 
     .signup-form label {
       display: flex;
       flex-direction: column;
@@ -779,7 +782,7 @@
       font-weight: 600;
       color: #3a4456;
     }
-
+ 
     .signup-form input[type='text'],
     .signup-form input[type='tel'],
     .signup-form input[type='email'] {
@@ -792,7 +795,7 @@
       color: #3a4456;
       outline: none;
     }
-
+ 
     .signup-agree {
       display: flex;
       flex-direction: row;
@@ -802,9 +805,9 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
+ 
     .signup-agree input { margin-top: 3px; }
-
+ 
     .signup-form button {
       align-self: center;
       margin-top: 8px;
@@ -819,7 +822,7 @@
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(244, 143, 184, 0.4);
     }
-
+ 
     .signup-years {
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
@@ -829,13 +832,13 @@
       margin: 46px 0 22px;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 6px rgba(150, 60, 110, 0.18);
     }
-
+ 
     .signup-badges {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
-
+ 
     .signup-badge {
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(14px);
@@ -852,7 +855,7 @@
       gap: 12px;
       text-align: left;
     }
-
+ 
     .signup-badge .tick {
       flex: 0 0 auto;
       width: 30px;
@@ -865,7 +868,7 @@
       justify-content: center;
       font-weight: 800;
     }
-
+ 
     /* FOOTER */
     .footer {
       position: relative;
@@ -873,14 +876,14 @@
       overflow: hidden;
       background: url('footer.jpg') center / cover no-repeat;
     }
-
+ 
     .footer::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(233, 228, 242, 0.55), rgba(248, 225, 235, 0.45));
     }
-
+ 
     .footer-wrap {
       position: relative;
       z-index: 4;
@@ -893,17 +896,17 @@
       min-height: 700px;
       align-content: center;
     }
-
+ 
     .footer-col {
       opacity: 0;
       transform: translateY(24px) scale(0.98);
       animation: cardIn 0.8s ease-out both;
     }
-
+ 
     .footer-wrap .footer-col:nth-child(1) { animation-delay: 0.08s; }
     .footer-wrap .footer-col:nth-child(2) { animation-delay: 0.18s; }
     .footer-wrap .footer-col:nth-child(3) { animation-delay: 0.28s; }
-
+ 
     .footer-col h3 {
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
@@ -913,21 +916,21 @@
       margin: 0 0 20px;
       text-shadow: 0 1px 0 #e57ba6, 0 2px 0 #d96e9b, 0 3px 6px rgba(150, 60, 110, 0.18);
     }
-
+ 
     .footer-col p, .footer-col li, .footer-col a, .footer-form {
       font-family: 'Manrope', sans-serif;
       color: #3a4456;
       font-size: 15px;
       line-height: 1.7;
     }
-
+ 
     .footer-col ul { list-style: none; margin: 4px 0 14px; padding: 0; }
-
+ 
     .footer-col li {
       padding-left: 18px;
       position: relative;
     }
-
+ 
     .footer-col li::before {
       content: '';
       position: absolute;
@@ -938,13 +941,13 @@
       border-radius: 50%;
       background: #f4a6c0;
     }
-
+ 
     .f-phone a, .f-mail a { color: #ec6fa0; font-weight: 600; text-decoration: none; }
     .f-area { font-weight: 700; margin: 14px 0 4px; }
     .f-copy { margin-top: 24px; font-size: 13px; color: #6a7280; }
     .f-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
     .f-links a { color: #ec6fa0; font-weight: 600; text-decoration: none; }
-
+ 
     .footer-form {
       display: flex;
       flex-direction: column;
@@ -956,14 +959,14 @@
       border-radius: 20px;
       padding: 24px;
     }
-
+ 
     .footer-form label {
       display: flex;
       flex-direction: column;
       gap: 6px;
       font-weight: 600;
     }
-
+ 
     .footer-form input[type='email'],
     .footer-form input[type='text'] {
       background: rgba(255, 255, 255, 0.85);
@@ -975,7 +978,7 @@
       color: #3a4456;
       outline: none;
     }
-
+ 
     .f-agree {
       flex-direction: row !important;
       align-items: flex-start;
@@ -983,7 +986,7 @@
       font-weight: 500 !important;
       font-size: 13px !important;
     }
-
+ 
     .footer-form button {
       align-self: flex-start;
       margin-top: 6px;
@@ -998,7 +1001,7 @@
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(244, 143, 184, 0.4);
     }
-
+ 
     /* REDUCED MOTION */
     @media (prefers-reduced-motion: reduce) {
       .about, .about h2, .about-card, .about-card li, .about-card h3 {
@@ -1011,9 +1014,10 @@
       .services-video, .when-video, .signup-video { animation: none !important; }
       .footer-col { animation: none !important; transform: none !important; opacity: 1 !important; }
     }
-
+ 
     /* =========================================================
        МОБИЛЬНАЯ ВЕРСИЯ - ИСПРАВЛЕННАЯ
+       Действует ТОЛЬКО на экранах до 768px. Десктоп не затрагивается.
        ========================================================= */
     @media (max-width: 768px) {
       html, body {
@@ -1022,11 +1026,14 @@
         min-width: 0;
         overflow-x: hidden;
       }
-
+ 
+      /* на телефоне высокие блоки не «примагничиваем» при прокрутке */
+      html { scroll-snap-type: none; }
+ 
       body { margin: 0; padding: 0; }
       section, footer, header, main, div { max-width: 100%; }
       img, video, svg { max-width: 100%; }
-
+ 
       /* TOPBAR MOBILE */
       .topbar {
         position: fixed;
@@ -1043,7 +1050,7 @@
         align-items: center;
         overflow: hidden;
       }
-
+ 
       .topbar-left { min-width: 0; flex: 1 1 auto; display: flex; align-items: center; gap: 7px; }
       .topbar-logo { width: 38px; height: 38px; flex: 0 0 38px; }
       .topbar-left .text-left { min-width: 0; }
@@ -1052,7 +1059,7 @@
       .topbar-right { flex: 0 0 auto; min-width: 0; }
       .topbar-phone { display: block; font-size: 10px !important; line-height: 1.1; white-space: nowrap; }
       .topbar { flex-wrap: wrap; padding-bottom: 6px; }
-
+ 
       .topbar-center {
         order: 3;
         display: flex;
@@ -1067,25 +1074,25 @@
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
-
+ 
       .topbar-center::-webkit-scrollbar { display: none; }
       .topbar-center a { flex: 0 0 auto; font-size: 11px !important; font-weight: 700; white-space: nowrap; }
-
+ 
       #hero, #about, #services, #when, #signup, #footer { scroll-margin-top: 105px; }
-
-      /* HERO MOBILE */
+ 
+      /* HERO MOBILE (без изменений) */
       .hero-section {
         width: 100% !important;
         max-width: 100% !important;
         min-height: 100svh;
         overflow: hidden;
       }
-
+ 
       .hero-inner { width: 100%; max-width: 100%; margin: 0; padding: 105px 16px 0; }
       .hero-section .hero-inner > header { display: none; }
       .hero-section .hero-inner main { width: 100%; max-width: 100%; padding: 25px 0 50px; }
       .hero-section .hero-inner main > div { width: 100%; max-width: 100%; }
-
+ 
       .hero-section .hero-inner p.mb-5 {
         max-width: 100%;
         font-size: 9px !important;
@@ -1093,10 +1100,10 @@
         padding: 7px 11px;
         margin-bottom: 18px;
       }
-
+ 
       .hero-section .brand-display { width: 100%; font-size: 36px !important; line-height: 1 !important; }
       .hero-section .brand-line { width: 100%; }
-
+ 
       .hero-section .hero-inner .max-w-2xl {
         width: 100%;
         max-width: 100%;
@@ -1104,16 +1111,12 @@
         font-size: 13px !important;
         line-height: 1.5;
       }
-
+ 
       .hero-section .hero-inner main .mt-10 { margin-top: 28px; }
       .hero-section .hero-inner main a { width: 100%; max-width: 270px; padding: 12px 20px; font-size: 12px; }
-
-      /* VIDEO BACKGROUNDS MOBILE - ИСПРАВЛЕНО */
-      .hero-section .video-bg,
-      .about-bg,
-      .services-video,
-      .when-video,
-      .signup-video {
+ 
+      /* Фон-видео героя: как было (заполняет экран) */
+      .hero-section .video-bg {
         position: absolute !important;
         inset: 0 !important;
         width: 100% !important;
@@ -1125,44 +1128,79 @@
         z-index: 0 !important;
         animation: none !important;
       }
-
+ 
+      /* =====================================================
+         БЛОКИ 2–5: ГЛАВНОЕ ИСПРАВЛЕНИЕ
+ 
+         Раньше видео растягивалось на весь блок (object-fit: cover).
+         Видео горизонтальное, а блок на телефоне — высокий и узкий,
+         поэтому от картинки оставалась только узкая полоска по
+         центру.
+ 
+         Теперь видео стоит в начале блока ЦЕЛИКОМ, на всю ширину
+         экрана, без обрезки. Его нижний край плавно растворяется
+         в цвет блока, а текст и карточки идут ниже.
+         ===================================================== */
+      .about-bg,
+      .services-video,
+      .when-video,
+      .signup-video {
+        position: relative !important;
+        inset: auto !important;
+        display: block;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        aspect-ratio: auto 16 / 9;
+        object-fit: contain !important;
+        transform: none !important;
+        animation: none !important;
+        z-index: 0 !important;
+        -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+      }
+ 
+      /* белая пелена поверх видео на телефоне не нужна */
+      .when::after,
+      .signup::after { display: none; }
+ 
+      /* Карточки чуть заметнее на спокойном фоне */
+      .about-card,
+      .when-intro,
+      .when-card,
+      .signup-form,
+      .signup-badge {
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow: 0 8px 22px rgba(160, 120, 170, 0.16);
+      }
+ 
       /* ABOUT MOBILE */
       .about {
         width: 100%;
         max-width: 100%;
-        padding: 60px 12px 70px;
+        padding: 0 0 56px;
         overflow: hidden;
+        background: linear-gradient(180deg, #fbe4ee 0%, #f7eaf2 55%, #f2e8f3 100%);
       }
-
-      .about-bg {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        transform: none !important;
-      }
-
-      .about-wrap { width: 100%; max-width: 100%; margin: 0; }
-
+ 
+      .about-wrap { width: 100%; max-width: 100%; margin: 0; padding: 6px 12px 0; }
+ 
       .about h2 {
         width: 100%;
         margin: 0 0 25px;
         font-size: 24px !important;
         line-height: 1.1;
       }
-
+ 
       .about-cols { width: 100%; display: grid; grid-template-columns: 1fr; gap: 12px; }
-
+ 
       .about-card {
         width: 100%;
         min-width: 0;
         padding: 18px 14px;
         border-radius: 16px;
       }
-
+ 
       .about-card h3 {
         width: 100%;
         font-size: 12px !important;
@@ -1170,53 +1208,55 @@
         padding: 9px 12px;
         margin-bottom: 12px;
       }
-
+ 
       .about-card p, .about-card li { font-size: 12px !important; line-height: 1.5; }
-
+ 
       /* SERVICES MOBILE */
       .services {
         position: relative;
         width: 100%;
         max-width: 100%;
-        min-height: 100svh;
+        min-height: 0;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(180deg, #cfe5f2 0%, #dbeaf3 55%, #e7eff5 100%);
       }
-
+ 
+      .services-video { order: -1; }
+ 
       .services-head {
         position: relative;
         top: auto;
         left: auto;
         right: auto;
         width: 100%;
-        padding: 65px 12px 0;
+        padding: 18px 12px 0;
       }
-
+ 
       .services-head h2 { font-size: 24px !important; line-height: 1.1; }
       .services-head p { font-size: 13px !important; line-height: 1.4; margin-top: 8px; }
-
+ 
       .services-badge { top: 14px; right: 12px; padding: 8px 13px; font-size: 11px; }
-
+ 
       .glass-kb {
         position: relative !important;
         top: auto !important;
         right: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         width: calc(100% - 24px) !important;
         max-width: none !important;
-        margin: 25px 12px 35px !important;
+        margin: 20px 12px 35px !important;
         padding: 12px !important;
         transform: none !important;
         gap: 8px;
         border-radius: 16px;
       }
-
-      .kb-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-        padding: 0 !important;
-        width: 100%;
-      }
-
+ 
+      /* обе строки кнопок сливаем в одну сетку 2 колонки, без «одиноких» кнопок */
+      .kb-row { display: contents; }
+ 
       .k {
         width: 100%;
         min-width: 0;
@@ -1227,34 +1267,30 @@
         border-radius: 10px;
         overflow-wrap: break-word;
       }
-
+ 
+      /* зелёная кнопка «Онлайн консультация» — на всю ширину */
+      .k.g { grid-column: 1 / -1; }
+ 
       /* WHEN MOBILE */
-      .when { width: 100%; max-width: 100%; overflow: hidden; }
-
-      .when-video {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        transform: none !important;
+      .when {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        background: linear-gradient(180deg, #fbe6ee 0%, #f8ece9 55%, #f3ecef 100%);
       }
-
+ 
       .when-wrap {
         width: auto;
         max-width: none;
         margin: 0 12px;
-        padding: 60px 14px 18px;
-        border-radius: 16px;
-        background: rgba(248, 243, 238, 0.6);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        padding: 18px 0 0;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
       }
-
+ 
       .when h2 { font-size: 22px !important; line-height: 1.1; margin-bottom: 16px; }
-
+ 
       .when-intro {
         width: 100%;
         margin: 0 0 10px;
@@ -1263,46 +1299,40 @@
         line-height: 1.5;
         text-align: left;
       }
-
+ 
       .when-cards {
         width: auto;
         max-width: none;
         display: grid;
         grid-template-columns: 1fr;
         gap: 12px;
-        margin: 0 12px 35px;
+        margin: 12px 12px 40px;
         padding: 0;
       }
-
+ 
       .when-card { width: 100%; min-width: 0; padding: 16px 14px; border-radius: 16px; }
       .when-card h3 { font-size: 14px !important; line-height: 1.2; }
       .when-card li { font-size: 11px !important; line-height: 1.45; padding-left: 18px; margin-bottom: 8px; }
-
+ 
       /* SIGNUP MOBILE */
-      .signup { width: 100%; max-width: 100%; overflow: hidden; }
-
-      .signup-video {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        transform: none !important;
+      .signup {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        background: linear-gradient(180deg, #e8def4 0%, #f0e7f6 55%, #f7e9f1 100%);
       }
-
-      .signup-wrap { width: 100%; max-width: 100%; padding: 60px 12px 65px; }
+ 
+      .signup-wrap { width: 100%; max-width: 100%; padding: 18px 12px 50px; }
       .signup h2 { font-size: 22px !important; line-height: 1.1; }
       .signup-sub { font-size: 13px !important; line-height: 1.4; }
-
+ 
       .signup-form {
         width: 100%;
         max-width: 100%;
         padding: 18px 12px;
         border-radius: 16px;
       }
-
+ 
       .signup-form input[type='text'],
       .signup-form input[type='tel'],
       .signup-form input[type='email'] {
@@ -1310,16 +1340,16 @@
         max-width: 100%;
         min-width: 0;
       }
-
+ 
       .signup-agree { font-size: 10px !important; line-height: 1.4; }
       .signup-form button { width: auto; max-width: 100%; padding: 12px 28px; }
-
+ 
       .signup-badges { width: 100%; grid-template-columns: 1fr; gap: 10px; }
       .signup-badge { width: 100%; min-width: 0; font-size: 12px !important; padding: 14px; }
-
-      /* FOOTER MOBILE */
+ 
+      /* FOOTER MOBILE (без изменений) */
       .footer { width: 100%; max-width: 100%; overflow: hidden; }
-
+ 
       .footer-wrap {
         width: 100%;
         max-width: 100%;
@@ -1328,27 +1358,27 @@
         padding: 45px 12px;
         min-height: auto;
       }
-
+ 
       .footer-col { width: 100%; min-width: 0; }
-
+ 
       .footer-form {
         width: 100%;
         max-width: 100%;
         padding: 16px 12px;
       }
-
+ 
       .footer-form input[type='email'],
       .footer-form input[type='text'] {
         width: 100%;
         max-width: 100%;
         min-width: 0;
       }
-
+ 
       .footer-form button { max-width: 100%; }
-
-      /* VEILS MOBILE - УМЕНЬШЕНЫ */
+ 
+      /* VEILS MOBILE */
       .veil-top, .veil-bottom { height: 20px !important; }
-
+ 
       /* FLOATING ELEMENTS */
       .floating-orb { max-width: none; pointer-events: none; }
       .floating-orb.left-\[12\%\] { left: -80px; }
@@ -1356,9 +1386,9 @@
     }
   </style>
 </head>
-
+ 
 <body class="text-white antialiased">
-
+ 
   <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-left">
@@ -1387,7 +1417,7 @@
         <div class="brand-name mt-1">Погода в доме</div>
       </div>
     </div>
-
+ 
     <nav class="topbar-center">
       <a href="#hero">Главная</a>
       <a href="#about">Семья</a>
@@ -1396,12 +1426,12 @@
       <a href="#signup">Записаться</a>
       <a href="#footer">Контакты</a>
     </nav>
-
+ 
     <div class="topbar-right">
       <a href="tel:+79991234567" class="topbar-phone">+7 (999) 123-45-67</a>
     </div>
   </header>
-
+ 
   <!-- HERO -->
   <section id="hero" class="hero-section relative min-h-screen overflow-hidden">
     <div class="veil-top"></div>
@@ -1418,34 +1448,34 @@
     >
       <source src="bg-video.mp4" type="video/mp4" />
     </video>
-
+ 
     <div class="hero-overlay"></div>
     <div class="hero-glow absolute inset-0"></div>
     
     <div class="floating-orb absolute left-[12%] top-[18%] h-52 w-52 rounded-full bg-white/10 blur-3xl"></div>
     <div class="floating-orb delay absolute bottom-[12%] right-[14%] h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
-
+ 
     <div class="hero-inner relative z-10 flex min-h-screen flex-col">
       <header class="pt-6 sm:pt-8">
         <div class="flex items-center justify-between gap-4 px-0"></div>
       </header>
-
+ 
       <main class="flex flex-1 items-center justify-center pb-10 pt-8 sm:pb-16 lg:pb-20">
         <div class="max-w-5xl text-center">
           <p class="mb-5 text-[10px] font-semibold uppercase tracking-wider text-[#3f4a5a] sm:text-xs">
             Психологическая поддержка • гармония • ясность
           </p>
-
+ 
           <h1 class="brand-display text-6xl sm:text-7xl lg:text-[5.5rem]">
             <span class="brand-line block leading-none">ПОГОДА</span>
             <span class="brand-line mt-2 block leading-none">В ДОМЕ</span>
           </h1>
-
+ 
           <p class="mx-auto mt-6 max-w-2xl text-sm font-medium leading-relaxed text-[#3f4a5a] sm:text-base lg:text-lg">
             Помогаем найти опору, снять внутреннее напряжение и вернуть ощущение покоя,
             близости и силы в каждом доме — и в каждом человеке.
           </p>
-
+ 
           <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href="#signup" class="inline-flex items-center justify-center rounded-full border-none bg-white/50 px-8 py-3 text-sm font-bold uppercase tracking-normal text-[#3a3a4a] transition hover:bg-white/70">
               Записаться
@@ -1458,12 +1488,12 @@
       </main>
     </div>
   </section>
-
+ 
   <!-- ABOUT -->
   <section id="about" class="about" aria-label="О центре и семье">
     <div class="veil-top"></div>
     <div class="veil-bottom"></div>
-
+ 
     <video 
       class="about-bg" 
       autoplay 
@@ -1475,7 +1505,7 @@
     >
       <source src="flowers.mp4" type="video/mp4" />
     </video>
-
+ 
     <div class="about-wrap">
       <h2>Всё начинается с семьи</h2>
       <div class="about-cols">
@@ -1498,7 +1528,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SERVICES -->
   <section id="services" class="services" aria-label="Наши услуги">
     <div class="veil-top"></div>
@@ -1509,7 +1539,7 @@
       <h2>НАША ПОМОЩЬ</h2>
       <p>Выберите то, что нужно именно вам</p>
     </div>
-
+ 
     <video 
       class="services-video" 
       autoplay 
@@ -1521,7 +1551,7 @@
     >
       <source src="services.mp4" type="video/mp4" />
     </video>
-
+ 
     <div class="glass-kb">
       <div class="kb-row">
         <button class="k">Индивидуальное консультирование</button>
@@ -1538,12 +1568,12 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- WHEN -->
   <section id="when" class="when" aria-label="Когда обратиться к психологу">
     <div class="veil-top"></div>
     <div class="veil-bottom"></div>
-
+ 
     <video 
       class="when-video" 
       autoplay 
@@ -1555,7 +1585,7 @@
     >
       <source src="when.mp4" type="video/mp4" />
     </video>
-
+ 
     <div class="when-wrap">
       <h2>Когда можно обратиться к психологу</h2>
       <p class="when-intro">
@@ -1566,7 +1596,7 @@
         проблемы, но только в более сложной форме.
       </p>
     </div>
-
+ 
     <div class="when-cards">
       <div class="when-card">
         <h3>Когда трудно с собой</h3>
@@ -1598,12 +1628,12 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SIGNUP -->
   <section id="signup" class="signup" aria-label="Записаться на консультацию">
     <div class="veil-top"></div>
     <div class="veil-bottom"></div>
-
+ 
     <video 
       class="signup-video" 
       autoplay 
@@ -1615,14 +1645,14 @@
     >
       <source src="horses.mp4" type="video/mp4" />
     </video>
-
+ 
     <div class="signup-wrap">
       <h2>Записаться на консультацию</h2>
       <p class="signup-sub">
         Свяжитесь с нами по телефону: <a href="tel:+79991234567">+7 (999) 123-45-67</a><br />
         или заполните форму ниже
       </p>
-
+ 
       <form class="signup-form" onsubmit="return false;">
         <label><span>Ваше Имя *</span><input type="text" required /></label>
         <label><span>Телефон *</span><input type="tel" required /></label>
@@ -1634,9 +1664,9 @@
         </label>
         <button type="submit">Отправить</button>
       </form>
-
+ 
       <p class="signup-years">Более 23 лет практики</p>
-
+ 
       <div class="signup-badges">
         <div class="signup-badge"><span class="tick">✓</span>Индивидуальное консультирование</div>
         <div class="signup-badge"><span class="tick">✓</span>Семейное консультирование</div>
@@ -1644,12 +1674,12 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- FOOTER -->
   <footer id="footer" class="footer">
     <div class="veil-top"></div>
     <div class="veil-bottom"></div>
-
+ 
     <div class="footer-wrap">
       <div class="footer-col">
         <h3>Обратная связь</h3>
@@ -1661,7 +1691,7 @@
         <ul><li>Новокузнецкая</li><li>Китай-город</li></ul>
         <p class="f-copy">© 2017–2026 Все права защищены homepsychologist.ru</p>
       </div>
-
+ 
       <div class="footer-col">
         <h3>График работы</h3>
         <p><b>Понедельник – суббота:</b> 9.00–21.00</p>
@@ -1672,7 +1702,7 @@
           <a href="#">Договор</a>
         </nav>
       </div>
-
+ 
       <div class="footer-col">
         <h3>Записаться на консультацию</h3>
         <form class="footer-form" onsubmit="return false;">
@@ -1684,6 +1714,9 @@
       </div>
     </div>
   </footer>
-
+ 
 </body>
 </html>
+ 
+
+
