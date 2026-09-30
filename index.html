@@ -1129,8 +1129,95 @@
         animation: none !important;
       }
 
-      /* БЛОКИ 2–5: Видео как баннер, стеклянные плашки размещены в рамках блока ниже */
-      .about-bg,
+      /* =====================================================
+         БЛОК 2 (ABOUT): ИСПРАВЛЕНИЕ
+         Видео теперь на весь блок как фон, а стеклянные плашки 
+         размещены ПОВЕРХ него, как на десктопе.
+         ===================================================== */
+      .about {
+        width: 100%;
+        max-width: 100%;
+        padding: 110px 16px 60px;
+        overflow: hidden;
+        position: relative;
+        background: #fbe4ee;
+      }
+
+      .about-bg {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        aspect-ratio: auto !important;
+        object-fit: cover !important;
+        transform: scale(1.15) !important;
+        z-index: 0 !important;
+      }
+
+      /* Легкая подложка для идеальной читаемости стекла на любом видео */
+      .about::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.15);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .about-wrap { 
+        position: relative !important;
+        z-index: 4 !important;
+        width: 100%; 
+        max-width: 100%; 
+        margin: 0; 
+        padding: 0; 
+      }
+
+      .about h2 {
+        width: 100%;
+        margin: 0 0 24px;
+        font-size: 26px !important;
+        line-height: 1.1;
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+      }
+
+      .about-cols { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr; 
+        gap: 16px; 
+      }
+
+      .about-card {
+        width: 100%;
+        min-width: 0;
+        padding: 24px 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.65) !important;
+        backdrop-filter: blur(16px) saturate(140%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+      }
+
+      .about-card h3 {
+        width: 100%;
+        font-size: 15px !important;
+        line-height: 1.2;
+        padding: 10px 16px;
+        margin-bottom: 14px;
+        background: rgba(255, 255, 255, 0.75) !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .about-card p, .about-card li { 
+        font-size: 14px !important; 
+        line-height: 1.6; 
+        color: #3a3a4a !important;
+      }
+
+      /* Остальные блоки (3-5) остаются с видео-баннером сверху, как и было задумано */
       .services-video,
       .when-video,
       .signup-video {
@@ -1150,7 +1237,6 @@
       .when::after,
       .signup::after { display: none; }
 
-      .about::before,
       .services::before,
       .when::before,
       .signup::before {
@@ -1163,52 +1249,9 @@
         z-index: 1;
         pointer-events: none;
       }
-      .about::before   { background: linear-gradient(to bottom, rgba(251, 228, 238, 0), #fbe4ee); }
       .services::before { background: linear-gradient(to bottom, rgba(207, 229, 242, 0), #cfe5f2); }
       .when::before    { background: linear-gradient(to bottom, rgba(251, 230, 238, 0), #fbe6ee); }
       .signup::before  { background: linear-gradient(to bottom, rgba(232, 222, 244, 0), #e8def4); }
-
-      /* ABOUT MOBILE */
-      .about {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 0 56px;
-        overflow: hidden;
-        background:
-          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 230px), rgba(244, 143, 184, 0.45), rgba(244, 143, 184, 0)),
-          radial-gradient(circle 200px at 92% calc(var(--banner-h) + 470px), rgba(186, 164, 240, 0.45), rgba(186, 164, 240, 0)),
-          radial-gradient(circle 200px at 8% calc(var(--banner-h) + 700px), rgba(255, 196, 150, 0.45), rgba(255, 196, 150, 0)),
-          radial-gradient(circle 200px at 90% calc(var(--banner-h) + 940px), rgba(150, 200, 240, 0.45), rgba(150, 200, 240, 0)),
-          linear-gradient(180deg, #fbe4ee 0%, #f7eaf2 55%, #f2e8f3 100%);
-      }
-
-      .about-wrap { width: 100%; max-width: 100%; margin: 0; padding: 24px 16px 0; }
-
-      .about h2 {
-        width: 100%;
-        margin: 0 0 25px;
-        font-size: 24px !important;
-        line-height: 1.1;
-      }
-
-      .about-cols { width: 100%; display: grid; grid-template-columns: 1fr; gap: 16px; }
-
-      .about-card {
-        width: 100%;
-        min-width: 0;
-        padding: 22px 18px;
-        border-radius: 20px;
-      }
-
-      .about-card h3 {
-        width: 100%;
-        font-size: 14px !important;
-        line-height: 1.2;
-        padding: 10px 14px;
-        margin-bottom: 14px;
-      }
-
-      .about-card p, .about-card li { font-size: 14px !important; line-height: 1.6; }
 
       /* SERVICES MOBILE */
       .services {
@@ -1725,7 +1768,7 @@
 
   <!-- МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ВИДЕО
        Работает ТОЛЬКО на телефонах (экран до 768px). На компьютере скрипт сразу выходит и ничего не меняет. 
-       Тяжёлый canvas-скрипт удалён для мгновенной загрузки и экономии батареи. -->
+       Тяжёлый canvas-скрипт полностью удалён для мгновенной загрузки и экономии батареи. -->
   <script>
     (function () {
       if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return;
